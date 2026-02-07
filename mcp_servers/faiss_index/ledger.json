@@ -57,6 +57,13 @@
       "indexed_at": "2026-02-07T09:35:01.094916Z",
       "chunk_count": 1,
       "error": null
+    },
+    "conversation_history\\2026\\02\\07\\session_70466483.json": {
+      "hash": "9a6792d3f00c8b3d0261a88cfa612def",
+      "status": "complete",
+      "indexed_at": "2026-02-07T12:21:19.881252Z",
+      "chunk_count": 0,
+      "error": null
     }
   }
 }

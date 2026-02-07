@@ -447,6 +447,38 @@ def preview_document(path: str) -> MarkdownOutput:
     except Exception as e:
         mcp_log("ERROR", f"Preview failed: {str(e)}")
         return MarkdownOutput(markdown=f"### ❌ Critical Error\nExtraction failed: {str(e)}")
+
+
+@mcp.tool()
+def extract_document_text(path: str) -> str:
+    """Extract plain text from a document file (PDF, XLSX, DOCX, etc.) for use in code.
+    Use this when you need to read document content into a variable (e.g. for extracted_text_by_file).
+    Returns the extracted text as a string, or an error message if the file cannot be read."""
+    file = Path(path)
+    if not file.exists():
+        return f"Error: File not found: {path}"
+    ext = file.suffix.lower()
+    mcp_log("INFO", f"Extracting text from {file.name} (ext: {ext})")
+    try:
+        if ext == ".pdf":
+            out = convert_pdf_to_markdown(str(file))
+            return out.markdown if hasattr(out, "markdown") else str(out)
+        elif ext in [".docx", ".doc", ".pptx", ".ppt", ".xlsx", ".xls"]:
+            converter = MarkItDown()
+            result = converter.convert(str(file))
+            return result.text_content
+        elif ext in [".html", ".htm", ".url"]:
+            out = extract_webpage(UrlInput(url=file.read_text().strip()))
+            return out.markdown if hasattr(out, "markdown") else str(out)
+        elif ext == ".py":
+            return file.read_text()
+        else:
+            return file.read_text(errors="replace")
+    except Exception as e:
+        mcp_log("ERROR", f"extract_document_text failed: {e}")
+        return f"Error extracting text from {path}: {str(e)}"
+
+
 @mcp.tool()
 async def ask_document(query: str, doc_id: str, history: list[dict] = [], image: str = None) -> str:
     """Ask a question about a specific document.

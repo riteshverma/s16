@@ -67,6 +67,41 @@ with open("output.html", "w") as f:
 return { "created_file": "output.html" }
 ```
 
+## ✅ LISTING FILES IN A DIRECTORY
+- When building a file list from a directory (e.g. for a "list all files" step), **always include the full path** for each file so downstream steps can open them.
+- Store at least: `name`, and **`path`** (full absolute path). Example:
+```python
+import os
+dir_path = r"C:\Users\...\My Folder"  # use path from the task
+file_list = []
+for filename in os.listdir(dir_path):
+    file_path = os.path.join(dir_path, filename)
+    if os.path.isfile(file_path):
+        file_list.append({
+            "name": filename,
+            "path": file_path,
+            "size": os.path.getsize(file_path),
+            "type": os.path.splitext(filename)[1]
+        })
+return { "file_list_T001": file_list }
+```
+
+## ✅ DOCUMENT TOOLS (preview_document / extract_document_text)
+- **CRITICAL:** These tools require the **full absolute path** to the file, not just the filename. Passing only a filename causes "File not found".
+- If the previous step produced a file list with a **`path`** key, use that: `preview_document(doc_info['path'])` or `await extract_document_text(doc_info['path'])`.
+- If the list only has **`name`**, you must construct the full path using the directory from the task, e.g. `file_path = os.path.join(dir_path, doc_info['name'])`, then pass `file_path` to the tool.
+- For **extracting text** use **extract_document_text(path)**; for **preview** use **preview_document(path)**. Both require full path.
+- Example (file list has `path`):
+```python
+results = []
+for doc_info in file_list_T001:
+    if doc_info.get('type', '').lower() not in ['.mp4', '.jpg', '.jpeg', '.png']:
+        full_path = doc_info.get('path') or os.path.join(dir_path, doc_info['name'])
+        analysis = await preview_document(full_path)  # or extract_document_text(full_path)
+        results.append({"document_name": doc_info['name'], "analysis": analysis})
+return {"document_analysis_T002": results}
+```
+
 ---
 
 ## ✅ EXAMPLE
