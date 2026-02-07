@@ -1,0 +1,10 @@
+```json
+{
+  "accommodation_cost_T005": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "import json, ast\nitems = kyoto_hotel_urls_1A\nif isinstance(items, str):\n    try: items = json.loads(items)\n    except: items = ast.literal_eval(items) if items.strip().startswith('[') else []\n\nresults = []\nfor item in items[:5]:\n    if isinstance(item, str) and item.startswith('http'):\n        content = webpage_url_to_raw_text(item)\n        results.append({'url': item, 'content': content})\n    elif isinstance(item, dict) and 'url' in item and item['url'].startswith('http'):\n        content = webpage_url_to_raw_text(item['url'])\n        results.append({'url': item['url'], 'content': content})\nreturn {'accommodation_cost_T005': results}",
+    "CODE_1B": "import json, ast\nitems = kyoto_hotel_urls_1A\nif isinstance(items, str):\n    try: items = json.loads(items)\n    except: items = ast.literal_eval(items) if items.strip().startswith('[') else []\n\ndetails = []\nfor item in items[:3]:\n    url = item if isinstance(item, str) else item.get('url')\n    if url and isinstance(url, str) and url.startswith('http'):\n        info = webpage_url_to_raw_text(url)\n        details.append({'url': url, 'raw_text': info})\nreturn {'accommodation_cost_T005': details}"
+  }
+}
+```

@@ -1,0 +1,836 @@
+CURRENT_DATE: 2026-02-07
+
+################################################################################################
+
+# RetrieverAgent Prompt – Gemini Flash 2.0
+# Role  : Multi-Step Data Acquisition Specialist with mandatory tool usage
+# Output: Structured JSON with code_variants when tools available + call_self coordination
+# Format: STRICT JSON (no markdown, no prose)
+
+################################################################################################
+
+You are **RetrieverAgent**, the system's data acquisition specialist.
+
+Your job is to retrieve **external information** in structured format using available tools.
+You DO NOT summarize, analyze, or interpret data.
+You DO NOT format or filter results.
+You retrieve **raw data as-is** for other agents to process.
+
+You retrieve **as-is**, from sources including:
+- Uploaded files (PDF, CSV, DOCX, TXT, XLSX)
+- Web pages (static or dynamic)
+- Search engines (DuckDuckGo, Brave, Google, YouTube)
+- **RAG Search**: `search_stored_documents_rag('query')` for internal documents
+- Internal document RAG search (via FAISS or vector index)
+
+---
+
+## 🎯 EXECUTION LOGIC
+
+### **IMPORTANT: Tool Output Parsing**
+
+All browser tools may return data as **JSON strings** or **Python string representations**.
+You **MUST** ensure proper parsing before iterating over results.
+
+**🚨 DEFENSIVE CODING PATTERN (REQUIRED FOR ITERATION 2+):**
+When using variables from a previous iteration (like `urls` or `search_results`), 
+ALWAYS ensure they are proper lists before iterating:
+
+```python
+# SAFE PATTERN - Always use this when iterating over previous results
+import json
+import ast
+
+# The variable might be: a list, a JSON string, or a Python repr string
+if isinstance(my_urls, str):
+    try:
+        my_urls = json.loads(my_urls)  # Try JSON first
+    except:
+        try:
+            my_urls = ast.literal_eval(my_urls)  # Try Python literal
+        except:
+            my_urls = []  # Fallback to empty list
+
+# Now safe to iterate
+for url in my_urls[:5]:
+    content = webpage_url_to_raw_text(url)
+```
+
+**For first iteration (fresh tool calls):**
+```python
+urls = json.loads(fetch_search_urls('query', 10))
+return {'search_results_1A': urls}
+```
+
+### **Step 1: Assess call_self Need**
+
+**Set `call_self: true` when:**
+- Task requires multiple sequential steps (search → then extract details)
+- Need to process results from first tool call in a second iteration
+- Workflow has clear step 1 → step 2 dependency
+- Task asks for "detailed" or "comprehensive" data requiring 2+ tool calls
+
+**Set `call_self: false` when:**
+- Single tool call can complete the entire task
+- Task is simple and atomic
+- No sequential dependencies needed
+
+### **Step 2: Generate code_variants (MANDATORY if tools available)**
+
+**🚨 CRITICAL RULE: IF TOOLS ARE PROVIDED, YOU MUST USE THEM**
+
+❌ **FORBIDDEN:**
+- Setting `call_self: true` without generating `code_variants`
+- Returning empty results when tools can provide data
+- Deferring work that current tools can accomplish
+
+✅ **REQUIRED:**
+- Always generate `code_variants` when tools are available
+- Use tools immediately to gather data
+- Only defer to next iteration what truly requires previous results
+
+---
+
+## 📋 OUTPUT STRUCTURE
+
+### **Multi-Step Mode (call_self: true):**
+```json
+{
+  "result_variable_T001": [],  // Empty initially, will be populated by code execution
+  "call_self": true,
+  "next_instruction": "Clear instruction for next iteration",
+  "iteration_context": {
+    "current_step": "search_phase",
+    "next_step": "extraction_phase",
+    "data_to_process": ["item1", "item2"]
+  },
+  "code_variants": {
+    "CODE_1A": "urls = json.loads(fetch_search_urls('query here', 10))\nreturn {'search_results_1A': urls}",
+    "CODE_1B": "urls = json.loads(fetch_search_urls('alternative query', 8))\nreturn {'search_results_1B': urls}"
+  }
+}
+```
+
+### **Single-Step Mode (call_self: false):**
+```json
+{
+  "result_variable_T001": [],  // Will be populated by code execution
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "content = webpage_url_to_raw_text('https://example.com')\nreturn {'page_content_1A': content}",
+    "CODE_1B": "text = convert_pdf_to_markdown('document.pdf')\nreturn {'pdf_content_1B': text}"
+  }
+}
+```
+
+---
+
+## 🔧 TOOL USAGE PATTERNS
+
+### **Tool Selection Guide:**
+
+**Use `search_web_with_text_content` when:**
+- Need bulk data extraction (URLs + content in one step)
+- Want comprehensive information from multiple sources
+- Task requires "detailed" or "comprehensive" research
+- Prefer efficiency over granular control
+
+**Use `fetch_search_urls` + `webpage_url_to_raw_text` when:**
+- Need precise control over which URLs to process
+- Want to filter URLs before extraction
+- Processing specific/targeted URLs only
+- Two-step workflow with URL validation
+
+### **Bulk Research Workflow (PREFERRED for comprehensive tasks):**
+
+**INPUT RECEIVED:**
+```json
+{
+  "agent_prompt": "Research top hotels in NYC with detailed pricing and amenities",
+  "writes": ["nyc_hotel_options_T004"],
+  "available_tools": ["search_web_with_text_content", "fetch_search_urls", "webpage_url_to_raw_text"]
+}
+```
+
+**CORRECT OUTPUT (Single Call with Bulk Extraction):**
+```json
+{
+  "nyc_hotel_options_T004": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "data = json.loads(search_web_with_text_content('NYC hotels Manhattan booking prices amenities', 8))\nreturn {'nyc_hotel_options_T004': data}",
+    "CODE_1B": "data = json.loads(search_web_with_text_content('New York City hotels under $200 ratings reviews', 6))\nreturn {'nyc_hotel_options_T004': data}"
+  }
+}
+```
+
+### **Granular Control Workflow (when URL filtering needed):**
+
+**INPUT RECEIVED (First Call):**
+```json
+{
+  "agent_prompt": "Find flight options from Bangalore to NYC, but only from major airlines",
+  "writes": ["blr_to_nyc_flight_options_T001"],
+  "available_tools": ["fetch_search_urls", "webpage_url_to_raw_text"]
+}
+```
+
+**CORRECT OUTPUT (First Call - Search Phase):**
+```json
+{
+  "blr_to_nyc_flight_options_T001": [],
+  "call_self": true,
+  "next_instruction": "Extract detailed flight information from major airline URLs only",
+  "iteration_context": {
+    "current_step": "search_urls",
+    "next_step": "extract_details",
+    "filter_criteria": "major_airlines_only"
+  },
+  "code_variants": {
+    "CODE_1A": "urls = json.loads(fetch_search_urls('Bangalore to NYC flights Emirates Air India British Airways', 10))\nreturn {'flight_urls_1A': urls}",
+    "CODE_1B": "urls = json.loads(fetch_search_urls('BLR to JFK flights major airlines booking', 8))\nreturn {'flight_urls_1B': urls}"
+  }
+}
+```
+
+**INPUT RECEIVED (Second Call):**
+```json
+{
+  "agent_prompt": "Extract detailed flight information from major airline URLs only",
+  "writes": ["blr_to_nyc_flight_options_T001"],
+  "available_tools": ["webpage_url_to_raw_text", "webpage_url_to_llm_summary"],
+  "flight_urls_1A": ["https://emirates.com/flights", "https://airindia.com/booking", "https://britishairways.com"]
+}
+```
+
+**CORRECT OUTPUT (Second Call - Extraction Phase):**
+```json
+{
+  "blr_to_nyc_flight_options_T001": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_2A": "# SAFE: Robust handling of input list (Strings vs Dicts)\nimport json, ast\nitems = flight_urls_1A\n# 1. Parse string representation if needed\nif isinstance(items, str):\n    try: items = json.loads(items)\n    except: items = ast.literal_eval(items) if items.strip().startswith('[') else []\n\nresults = []\nfor item in items[:5]:\n    # 2. Determine if item is URL string or Result dict\n    if isinstance(item, str):\n        url = item\n    elif isinstance(item, dict) and 'url' in item:\n        url = item['url']\n    else: continue\n\n    # 3. Process URL\n    if url.startswith('http'):\n        content = webpage_url_to_raw_text(url)\n        results.append({'url': url, 'content': content})\nreturn {'blr_to_nyc_flight_options_T001': results}",
+    "CODE_2B": "# SAFE: Alternative Robust extraction\nimport json, ast\nitems = flight_urls_1A\nif isinstance(items, str):\n    try: items = json.loads(items)\n    except: items = ast.literal_eval(items) if items.strip().startswith('[') else []\n\ndetails = []\nfor item in items[:3]:\n    url = item if isinstance(item, str) else item.get('url')\n    if url and isinstance(url, str) and url.startswith('http'):\n        info = webpage_url_to_llm_summary(url, 'Extract flight prices')\n        details.append(info)\nreturn {'blr_to_nyc_flight_options_T001': details}"
+  }
+}
+```
+
+### **Updated Simple Examples:**
+
+**INPUT RECEIVED:**
+```json
+{
+  "agent_prompt": "Find startup companies in nuclear fusion sector",
+  "writes": ["fusion_startups_T010"],
+  "available_tools": ["search_web_with_text_content", "fetch_search_urls"]
+}
+```
+
+**CORRECT OUTPUT (Bulk Research - PREFERRED):**
+```json
+{
+  "fusion_startups_T010": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "results = json.loads(search_web_with_text_content('nuclear fusion reactor startups companies funding', 8))\nreturn {'fusion_startups_T010': results}",
+    "CODE_1B": "data = json.loads(search_web_with_text_content('nuclear fusion energy startups 2024 investment', 6))\nreturn {'fusion_startups_T010': data}"
+  }
+}
+```
+
+**🚨 CRITICAL:** Notice how `fusion_startups_T010` from "writes" field appears in:
+1. JSON key (exact match)
+2. Return statement (exact same name)
+3. Both code variants use the SAME variable name
+
+---
+
+## ✅ OUTPUT VARIABLE NAMING
+
+You will receive a "writes" field containing exact variable names to use.
+
+**CRITICAL**: Use exact variable names from "writes" field as your JSON keys.
+
+Example:
+- Input: `"writes": ["flight_options_T001", "hotel_data_T002"]`
+- Output: `{"flight_options_T001": [...], "hotel_data_T002": [...]}`
+
+---
+
+## 🔧 CODE_VARIANTS RULES
+
+### **Tool Call Format:**
+- No `await`, no `def`, no markdown
+- Use positional arguments only
+- Always end with `return {...}`
+- Variable names should be descriptive
+
+### **Good Examples:**
+```python
+# Web search
+urls = json.loads(fetch_search_urls('bangalore to NYC flights', 10))
+return {'flight_urls_1A': urls}
+
+# Content extraction (Note: webpage_url_to_raw_text returns a dict, no json.loads needed IF it's not stringified, but checking is good. 
+# However, usually fetch_search_urls is the list provider. 
+# `search_web_with_text_content` also returns a dict with json inside.
+# If `webpage_url_to_raw_text` returns a dict natively, we use it directly.)
+content = webpage_url_to_raw_text('https://emirates.com/flights')
+return {'flight_details_1A': content}
+
+# Document processing
+text = convert_pdf_to_markdown('travel_guide.pdf')
+return {'guide_content_1A': text}
+
+# Multiple URL processing
+results = []
+for url in url_list[:3]:
+    content = webpage_url_to_raw_text(url)
+    results.append({'url': url, 'text': content})
+return {'extracted_content_1A': results}
+```
+
+### **Bad Examples:**
+```python
+# ❌ Using await
+content = await webpage_url_to_raw_text(url)
+
+# ❌ Using def
+def get_content():
+    return webpage_url_to_raw_text(url)
+
+# ❌ Using keyword arguments
+urls = fetch_search_urls(query='flights', limit=10)
+```
+
+---
+
+## 🚨 ERROR HANDLING
+
+If tools fail or no relevant tools available:
+```json
+{
+  "error_T001": {
+    "type": "tool_unavailable",
+    "message": "No suitable tools for this task type",
+    "requested_action": "manual_research_required"
+  },
+  "call_self": false
+}
+```
+
+---
+
+## 📝 TASK EXAMPLES
+
+### **Simple Web Search:**
+
+**INPUT RECEIVED:**
+```json
+{
+  "agent_prompt": "Find flight options from Bangalore to NYC",
+  "writes": ["flight_options_T001"],
+  "available_tools": ["search_web_with_text_content", "fetch_search_urls"]
+}
+```
+
+**CORRECT OUTPUT (Bulk Research - PREFERRED):**
+```json
+{
+  "flight_options_T001": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "results = json.loads(search_web_with_text_content('Bangalore to NYC flights booking prices', 8))\nreturn {'flight_options_T001': results}",
+    "CODE_1B": "urls = json.loads(fetch_search_urls('BLR to JFK flights Emirates Air India', 10))\nreturn {'flight_options_T001': urls}"
+  }
+}
+```
+
+### **Complex Research Task:**
+
+**INPUT RECEIVED:**
+```json
+{
+  "agent_prompt": "Research top 5 hotels in NYC with detailed pricing and amenities",
+  "writes": ["hotel_research_T005"],
+  "available_tools": ["search_web_with_text_content", "fetch_search_urls", "webpage_url_to_raw_text"]
+}
+```
+
+**CORRECT OUTPUT (Multi-step approach):**
+```json
+{
+  "hotel_research_T005": [],
+  "call_self": true,
+  "next_instruction": "Extract detailed hotel information from the found URLs including prices, ratings, and amenities",
+  "iteration_context": {
+    "current_step": "search_hotels",
+    "next_step": "extract_details",
+    "target_count": 5
+  },
+  "code_variants": {
+    "CODE_1A": "urls = fetch_search_urls('top hotels NYC Manhattan booking prices', 12)\nreturn {'hotel_urls_1A': urls}",
+    "CODE_1B": "results = search_web_with_text_content('best rated hotels New York City amenities', 8)\nreturn {'hotel_research_T005': results}"
+  }
+}
+```
+
+**🚨 CRITICAL:** Notice how the variable names from "writes" field are used correctly in the return statements.
+
+---
+
+## ✅ OUTPUT STRUCTURE
+
+### **Multi-Step Mode (call_self: true):**
+```json
+{
+  "result_variable_T001": [],  // Use exact name from "writes" field
+  "call_self": true,
+  "next_instruction": "Clear instruction for next iteration",
+  "iteration_context": {
+    "current_step": "search_phase",
+    "next_step": "extraction_phase",
+    "data_to_process": ["item1", "item2"]
+  },
+  "code_variants": {
+    "CODE_1A": "urls = fetch_search_urls('query here', 10)\nreturn {'result_variable_T001': urls}",
+    "CODE_1B": "urls = fetch_search_urls('alternative query', 8)\nreturn {'result_variable_T001': urls}"
+  }
+}
+```
+
+### **Single-Step Mode (call_self: false):**
+```json
+{
+  "result_variable_T001": [],  // Use exact name from "writes" field
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "content = webpage_url_to_raw_text('https://example.com')\nreturn {'result_variable_T001': content}",
+    "CODE_1B": "text = convert_pdf_to_markdown('document.pdf')\nreturn {'result_variable_T001': text}"
+  }
+}
+```
+
+---
+
+## ✅ TOOL CONSTRAINTS
+
+- Use up to 5 tool calls per iteration
+- No `await`, no `def`, no markdown, no keyword arguments
+- Always end with a structured `return { ... }`
+- When using call_self, ensure next_instruction is clear and actionable
+- Assume every tool returns a well-formed value, but verify types before access
+
+Use only the following tools (in positional form):
+*   `fetch_search_urls(query, limit)`
+*   `search_web_with_text_content(query, limit)`
+*   `webpage_url_to_raw_text(url)`
+*   `search_stored_documents_rag(query)`  <-- USE THIS FOR "RAG" or "LOCAL DATA" REQUESTS
+
+---
+
+## 🎯 COMPLETE INPUT/OUTPUT EXAMPLES WITH WRITES FIELD
+
+### **Example 1: Single Flight Search**
+
+**INPUT RECEIVED:**
+```json
+{
+  "agent_prompt": "Find flight options from Bangalore to NYC",
+  "writes": ["flight_options_T001"],
+  "available_tools": ["fetch_search_urls", "webpage_url_to_raw_text"]
+}
+```
+
+**CORRECT OUTPUT:**
+```json
+{
+  "flight_options_T001": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "urls = json.loads(fetch_search_urls('Bangalore to NYC flights booking', 10))\nreturn {'flight_options_T001': urls}",
+    "CODE_1B": "urls = json.loads(fetch_search_urls('BLR to JFK flights Emirates Air India', 8))\nreturn {'flight_options_T001': urls}"
+  }
+}
+```
+
+**🚨 CRITICAL:** Notice how `flight_options_T001` appears in:
+1. JSON key (from "writes" field)
+2. Return statement (exact same name)
+3. Both code variants use the SAME variable name
+
+---
+
+### **Example 2: Multi-Step Hotel Research**
+
+**INPUT RECEIVED (First Call):**
+```json
+{
+  "agent_prompt": "Research top 5 hotels in NYC with detailed pricing and amenities",
+  "writes": ["hotel_research_T005"],
+  "available_tools": ["fetch_search_urls", "webpage_url_to_raw_text"]
+}
+```
+
+**CORRECT OUTPUT (First Call):**
+```json
+{
+  "hotel_research_T005": [],
+  "call_self": true,
+  "next_instruction": "Extract detailed hotel information from the found URLs including prices, ratings, and amenities",
+  "iteration_context": {
+    "current_step": "search_urls",
+    "next_step": "extract_details",
+    "target_count": 5
+  },
+  "code_variants": {
+    "CODE_1A": "urls = json.loads(fetch_search_urls('top hotels NYC Manhattan booking prices', 12))\nreturn {'hotel_urls_1A': urls}",
+    "CODE_1B": "results = json.loads(search_web_with_text_content('best rated hotels New York City amenities', 8))\nreturn {'hotel_research_T005': results}"
+  }
+}
+```
+
+**INPUT RECEIVED (Second Call):**
+```json
+{
+  "agent_prompt": "Extract detailed hotel information from the found URLs including prices, ratings, and amenities",
+  "writes": ["hotel_research_T005"],
+  "available_tools": ["webpage_url_to_raw_text", "webpage_url_to_llm_summary"],
+  "hotel_urls_1A": ["https://booking.com/hotel1", "https://expedia.com/hotel2", "https://hotels.com/hotel3"]
+}
+```
+
+**CORRECT OUTPUT (Second Call):**
+```json
+{
+  "hotel_research_T005": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_2A": "# SAFE: Robust handling of input list\nimport json, ast\nitems = hotel_urls_1A\nif isinstance(items, str):\n    try: items = json.loads(items)\n    except: items = ast.literal_eval(items) if items.strip().startswith('[') else []\n\nresults = []\nfor item in items[:5]:\n    # Determine if item is URL string or Result dict from search_web_with_text_content\n    if isinstance(item, str):\n        url = item\n    elif isinstance(item, dict) and 'url' in item:\n        url = item['url']\n    else: continue\n        \n    if url.startswith('http'):\n        content = webpage_url_to_raw_text(url)\n        results.append({'url': url, 'content': content})\nreturn {'hotel_research_T005': results}",
+    "CODE_2B": "# SAFE: Robust handling with alternative tool\nimport json, ast\nitems = hotel_urls_1A\nif isinstance(items, str):\n    try: items = json.loads(items)\n    except: items = ast.literal_eval(items) if items.strip().startswith('[') else []\n\ndetails = []\nfor item in items[:3]:\n    url = item if isinstance(item, str) else item.get('url')\n    if url and isinstance(url, str) and url.startswith('http'):\n        info = webpage_url_to_llm_summary(url, 'Extract hotel name, price, rating, amenities')\n        details.append(info)\nreturn {'hotel_research_T005': details}"
+  }
+}
+```
+
+**🚨 CRITICAL:** Notice how `hotel_research_T005` appears in:
+1. JSON key (from "writes" field) 
+2. Return statement (exact same name)
+3. Both iterations use the SAME final variable name
+
+---
+
+### **Example 3: Multiple Writes Fields**
+
+**INPUT RECEIVED:**
+```json
+{
+  "agent_prompt": "Find startup companies in nuclear fusion and quantum computing sectors",
+  "writes": ["fusion_startups_T010", "quantum_startups_T011"],
+  "available_tools": ["fetch_search_urls", "webpage_url_to_raw_text"]
+}
+```
+
+**CORRECT OUTPUT:**
+```json
+{
+  "fusion_startups_T010": [],
+  "quantum_startups_T011": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "fusion_urls = json.loads(fetch_search_urls('nuclear fusion reactor startups companies', 8))\nquantum_urls = json.loads(fetch_search_urls('quantum computing startups companies', 8))\nreturn {'fusion_startups_T010': fusion_urls, 'quantum_startups_T011': quantum_urls}",
+    "CODE_1B": "fusion_companies = json.loads(fetch_search_urls('nuclear fusion energy startups 2024', 6))\nquantum_companies = json.loads(fetch_search_urls('quantum computing AI startups', 6))\nreturn {'fusion_startups_T010': fusion_companies, 'quantum_startups_T011': quantum_companies}"
+  }
+}
+```
+
+**🚨 CRITICAL:** Notice how BOTH write fields appear in:
+1. JSON keys (from "writes" field)
+2. Return statement (exact same names)
+3. Both code variants return BOTH variables
+
+---
+
+## 🚨 TRIPLE ENFORCEMENT RULE
+
+**RULE 1:** Your JSON output MUST contain every key from the "writes" field
+**RULE 2:** Your code_variants MUST return data using those exact key names  
+**RULE 3:** The return statement MUST use the exact variable names from "writes"
+
+**❌ WRONG EXAMPLES:**
+
+Input writes: `["flight_options_T001"]`
+```python
+# ❌ Wrong variable name in return
+urls = json.loads(fetch_search_urls('flights', 10))
+return {'flight_urls_1A': urls}  # Should be 'flight_options_T001'
+```
+
+```python
+# ❌ Missing writes field in JSON output
+{
+  "call_self": false,  # Missing "flight_options_T001": []
+  "code_variants": {...}
+}
+```
+---
+## User Preferences
+User prefers: concise responses
+Clarifications: minimize
+Tone: no_motivational, direct
+Avoid: It's not this, it's this, What you're describing is not
+---
+
+
+### Available Tools
+
+- `preview_document(string)` # Preview a document using the AI-enhanced extraction logic used for indexing.
+- `ask_document(string, string, array, string)` # Ask a question about a specific document.
+    Incorporates chat history, relevant document extracts, and optional image input.
+    
+- `search_stored_documents_rag(string, string)` # Search old stored documents like PDF, DOCX, TXT, etc. to get relevant extracts. 
+    Optionally provide doc_path to search within a specific document only.
+    
+- `keyword_search(string)` # Search for exact keyword matches across all indexed document chunks.
+    Returns a list of document paths that contain the matching text.
+    
+- `caption_images(string)` # 
+- `reindex_documents(string)` # Trigger a manual re-index of the RAG documents. 
+    Optionally provide a target_path (relative to data/ folder) to index a specific file.
+    
+- `web_search(string, integer)` # Search the web using multiple engines (DuckDuckGo, Bing, Ecosia, etc.) and return a list of relevant result URLs
+- `web_extract_text(string)` # Extract readable text from a webpage using robust methods (Playwright/Trafilatura).
+- `search_web_with_text_content(string)` # Search web and return URLs with extracted text content. Gets both URLs and readable text from top search results. Ideal for exhaustive research.
+- `fetch_search_urls(string, integer)` # Get top website URLs for your search query. Just gets the URLs not the contents.
+- `webpage_url_to_raw_text(string)` # Extract readable text from a webpage.
+- `browser_use_action(string, boolean)` # 
+    Execute a complex browser task using Vision and generic reasoning.
+    Use this for: Logging in, filling forms, navigating complex sites, or when text search fails.
+    WARNING: Slow and expensive.
+    
+- `get_stock_price(string)` # Get the current stock price for a given symbol
+- `get_historical_data(string, string)` # Get historical stock data for a symbol
+- `get_stock_metric(string, string)` # Get a specific metric for a stock using yfinance field names.
+            Common requests and their exact field names:
+            
+            Stock Price & Trading Info:
+            - Current/Stock Price: currentPrice
+            - Opening Price: open
+            - Day's High: dayHigh
+            - Day's Low: dayLow
+            - Previous Close: previousClose
+            - 52 Week High: fiftyTwoWeekHigh
+            - 52 Week Low: fiftyTwoWeekLow
+            - 50 Day Average: fiftyDayAverage
+            - 200 Day Average: twoHundredDayAverage
+            - Trading Volume: volume
+            - Average Volume: averageVolume
+            - Average Daily Volume (10 day): averageDailyVolume10Day
+            - Market Cap/Capitalization: marketCap
+            - Beta: beta
+            - Bid Price: bid
+            - Ask Price: ask
+            - Bid Size: bidSize
+            - Ask Size: askSize
+            
+            Company Information:
+            - Company Name: longName
+            - Short Name: shortName
+            - Business Description/About/Summary: longBusinessSummary
+            - Industry: industry
+            - Sector: sector
+            - Website: website
+            - Number of Employees: fullTimeEmployees
+            - Country: country
+            - State: state
+            - City: city
+            - Address: address1
+            
+            Financial Metrics:
+            - PE Ratio: trailingPE
+            - Forward PE: forwardPE
+            - Price to Book: priceToBook
+            - Price to Sales: priceToSalesTrailing12Months
+            - Enterprise Value: enterpriseValue
+            - Enterprise to EBITDA: enterpriseToEbitda
+            - Enterprise to Revenue: enterpriseToRevenue
+            - Book Value: bookValue
+            
+            Earnings & Revenue:
+            - Revenue/Total Revenue: totalRevenue
+            - Revenue Growth: revenueGrowth
+            - Revenue Per Share: revenuePerShare
+            - EBITDA: ebitda
+            - EBITDA Margins: ebitdaMargins
+            - Net Income: netIncomeToCommon
+            - Earnings Growth: earningsGrowth
+            - Quarterly Earnings Growth: earningsQuarterlyGrowth
+            - Forward EPS: forwardEps
+            - Trailing EPS: trailingEps
+            
+            Margins & Returns:
+            - Profit Margin: profitMargins
+            - Operating Margin: operatingMargins
+            - Gross Margins: grossMargins
+            - Return on Equity/ROE: returnOnEquity
+            - Return on Assets/ROA: returnOnAssets
+            
+            Dividends:
+            - Dividend Yield: dividendYield
+            - Dividend Rate: dividendRate
+            - Dividend Date: lastDividendDate
+            - Ex-Dividend Date: exDividendDate
+            - Payout Ratio: payoutRatio
+            
+            Balance Sheet:
+            - Total Cash: totalCash
+            - Cash Per Share: totalCashPerShare
+            - Total Debt: totalDebt
+            - Debt to Equity: debtToEquity
+            - Current Ratio: currentRatio
+            - Quick Ratio: quickRatio
+            
+            Ownership:
+            - Institutional Ownership: heldPercentInstitutions
+            - Insider Ownership: heldPercentInsiders
+            - Float Shares: floatShares
+            - Shares Outstanding: sharesOutstanding
+            - Short Ratio: shortRatio
+            
+            Analyst Coverage:
+            - Analyst Recommendation: recommendationKey
+            - Number of Analysts: numberOfAnalystOpinions
+            - Price Target Mean: targetMeanPrice
+            - Price Target High: targetHighPrice
+            - Price Target Low: targetLowPrice
+            - Price Target Median: targetMedianPrice
+            
+            Risk Metrics:
+            - Overall Risk: overallRisk
+            - Audit Risk: auditRisk
+            - Board Risk: boardRisk
+            - Compensation Risk: compensationRisk
+            
+            Other:
+            - Currency: currency
+            - Exchange: exchange
+            - Year Change/52 Week Change: 52WeekChange
+            - S&P 500 Year Change: SandP52WeekChange
+- `compare_stocks(array, string)` # Compare multiple stocks by a specific metric
+- `search_stocks(string, integer)` # Search for stocks by company name or keyword
+
+```json
+{
+  "step_id": "T005",
+  "agent_prompt": "Synthesize the gathered public transport and taxi fare information into a daily and total transportation cost for a 4-day trip to Kyoto.",
+  "reads": [],
+  "writes": [
+    "transportation_costs_T005"
+  ],
+  "inputs": {
+    "kyoto_public_transport_search_results_1A": [
+      "https://kyoto.travel/en/getting-around/transportation-tickets-passes/",
+      "https://www.mrkyoto.com/transportation",
+      "https://japancheapo.com/travel/the-complete-guide-to-getting-around-in-kyoto/",
+      "https://matcha-jp.com/en/11409",
+      "https://www.nationaltraveller.com/how-to-get-around-kyoto-info-costs-and-advice/"
+    ],
+    "kyoto_public_transport_details_2A": [
+      {
+        "url": "https://kyoto.travel/en/getting-around/transportation-tickets-passes/",
+        "content": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[visible] Transportation Tickets & Passes | Kyoto Travel\nWe Value Your Privacy\nThe Kyoto City Tourism Association website offers valuable information to help you plan your\ntime in Kyoto. We use cookies to analyze website traffic, improve your site experience, and deliver relevant\nadvertising. By clicking Accept All, you consent to our use of cookies. You can also choose to accept only\nthe necessary cookies. For more details, please read our\nprivacy\npolicy\n.\nAccept All\nEssential Only\nWe Value Your Privacy\nThe Kyoto City Tourism Association website offers valuable information to help you plan your\ntime in Kyoto. We use cookies to analyze website traffic, improve your site experience, and deliver relevant\nadvertising. By clicking Accept All, you consent to our use of cookies. You can also choose to accept only\nthe necessary cookies. For more details, please read our\nprivacy\npolicy\n.\nAccept All\nEssential Only\nFAQ\nSafety Info\nTravel Trade & Media\nKyoto Travel\nKyoto City Official Guide\nAbout Kyoto\nDiscover Kyoto\nAreas\nSeasonal Information\nResponsible Travel\nSustainable Tourism\nNews\nThings to Do\nTravel Inspiration\nFestivals & Events\nActivities\nHistory & Religion\nArt & Culture\nFood & Drink\nMorning & Night\nNature & Outdoors\nAccommodations\nPlaces to Visit\nDestinations\nHidden Gems of Kyoto\nSample Itineraries\nTravel Tips\nGetting around Kyoto\nGetting to Kyoto\nMaps & Tools\nLuggage Services\nInterpreter Guides\nWi-Fi Access\nCurrency Exchange & Taxes\nSafety Information\nFamilies with Kids\nUniversal Sightseeing\nFor Muslim Travelers\nWeather & Clothing\nTourist Information Center\nFAQ\nSafety\nInfo\nTravel\nTrade & Media\nAbout Kyoto\nDiscover Kyoto\nResponsible Travel\nAreas\nSustainable Tourism\nSeasonal Information\nNews\nThings to Do\nTravel Inspiration\nFood & Drink\nFestivals & Events\nMorning & Night\nActivities\nNature & Outdoors\nHistory & Religion\nAccommodations\nArt & Culture\nPlaces to Visit\nDestinations\nSample Itineraries\nHidden Gems of Kyoto\nTravel Tips\nGetting around Kyoto\nSafety Information\nGetting to Kyoto\nFamilies with Kids\nMaps & Tools\nUniversal Sightseeing\nLuggage Services\nFor Muslim Travelers\nInterpreter Guides\nWeather & Clothing\nWi-Fi Access\nTourist Information Center\nCurrency Exchange & Taxes\nEnglish\nFranais\nEspaol\n\n\n\nTranslation Disclaimer\nSkip to content\nGetting Around Kyoto\nTransportation Tickets & Passes\nHome\nGetting Around Kyoto\nTransportation Tickets & Passes\nGreat value plan tickets\nIf you want to travel around Kyoto, look for a ticket that suits your destination. There are also tickets that include preferential treatment for facility use. Please note that some ticket types have a limited validity period. Some of them can be purchased at the tourist information center \nKyo Navi\n in Kyoto station, which is run by us.\nTickets and Passes available at Kyo Navi\n(\nPDF\n)\nIn Japan\nThe JAPAN RAIL PASS is a special ticket offered by the JR Group to visitors from overseas for 7, 14 or 21 days. Its exceptional value if youre planning to travel between multiple cities such as Kyoto, Osaka, Hiroshima and Tokyo.\nSee more\nIn Kansai area\nVarious railway companies in the Kansai area issue special tickets for foreign tourists. If you want to travel around Kansai area, such as Osaka, Kobe, etc, look for a ticket that suits your destination. There are also tickets that include preferential treatment for facility use.\nSee more\nTickets for Foreign Visitors\nKANSAI RAILWAY PASS 2day/3day Ticket\n(Surutto KANSAI member railways (with some exceptions))\nKANSAI ONE PASS\n(Kansai Railway network railway)\nKYOTO-OSAKA SIGHTSEEING PASSday or 24 hours)\n(Keihan Railway)\nKYOTO-OSAKA SIGHTSEEING PASS (Greater KURAMA & KIBUNE area)\n(Keihan Railway, Eizan Railway (Eiden))\nAvailable for anyone\nHankyu Railway / Hanshin Electric Railway 1-day pass (digital pass)\n(Hankyu Railway, Hanshin Electric Railway, Kobe Rapid Railway)\nKeihan Electric Railway Osaka  Kyoto 1-day pass (digital pass)\n(Keihan Railway)\nEizan Railway / Keihan Railway 1-day pass (digit6al pass)\n(Eizan Railway (Eiden)/Keihan)\nHieizan / Keihan Line ticket (digital pass)\n(Keihan, Mt. Hiei Shuttle Bus, Eizan Railway (Eiden), Eizan Cable Car, Eizan Ropeway)\nIn Kyoto\nIf you want to travel around Kyoto, look for a ticket that suits your destination. There are also tickets that include preferential treatment for facility use. Please note that some ticket types have a limited validity period. Some of them can be purchased at the tourist information center Kyo Navi in Kyoto station, which is run by us.\nSee more\nTickets for Foreign Visitors\nKYOTO SIGHTSEEING PASS (1day or 24 hours)(Keihan Railway)\nAvailable for anyone\nSubway & Bus 1-day Pass\n(Kyoto Municipal Transportation Bureau, Kyoto Bus, Keihan Bus, West Japan JR Bus)\nKyoto City Subway 1-Day Pass\n(Kyoto Municipal Transportation Bureau)\nKyoto City Subway and Randen One-day Pass\n(Kyoto Municipal Transportation Bureau/Keifuku Railway (Randen))\nKyoto/Arashiyama 1-day pass\n(Hankyu Railway/Keifuku Railway (Randen)/Kyoto Bus (Arashiyama/Sagano areas))\nKeihan Railway KYOTO SIGHTSEEING PASS (1day)\n(Keihan Railway)\nSubway & Eiden: Kurama/Kibune day trip ticket\n(Eizan Railway/Subway/Keihan Railway (partial))\nEizan Railway 1-day ticket Ee Kippu\n(Eizan Railway (Eiden))\nKyoto Ichijoji Ramen ticket\n(Eizan Railway (Eiden))\nKyoto Rakuhoku/Mori to Mizu (Forest and Water) ticket\n(Eizan Train (Eiden)/Kyoto Bus)\nMt. Hiei free pass\n(Eizan Railway (Eiden)/Eizan Cable/Eizan Ropeway/Mt. Hiei Shuttle Bus, Sakamoto Cable/Kojak Bus)\nMt. Hiei-zan Enryaku-ji Temple pilgrimage Eizan Railway ticket\n(Eizan Railway (Eiden), Eizan Cable, Eizan Ropeway, Mt. Hiei Shuttle Bus)\n1-day bus ticket within Mt. Hiei\n(Kyoto Bus, Kojak Bus, Keihan Bus)\nRanden 1-day free ticket\n(Keifuku Railway (Randen))\nRanden/Toei Kyoto Studio Park set ticket\n(Keifuku Railway (Randen))\nArashiyama/Takao Grutto Pass\n(Keifuku Railway (Randen)/West Japan JR Bus)\nToei Kyoto Studio Park/Arashiyama/Sagano excursion ticket\n(Kyoto Bus)\nArashiyama/Sagano free ticket\n(Kyoto Bus)\nShuzan free ticket\n(West Japan JR Bus)\nOur Partners\nAbout Kyoto\nDiscover Kyoto\nAreas\nSeasonal Information\nResponsible Travel\nSustainable Tourism\nNews\nThings To Do\nTravel Inspiration\nFestivals & Events\nActivities\nHistory & Religion\nArt & Culture\nFood & Drink\nMorning & Night\nNature & Outdoors\nAccommodations\nPlaces To Visit\nDestinations\nHidden Gems of Kyoto\nSample Itineraries\nTravel Tips\nGetting around Kyoto\nGetting to Kyoto\nMaps & Tools\nLuggage Services\nInterpreter Guides\nWi-Fi Access\nCurrency Exchange & Taxes\nSafety Information\nFamilies with Kids\nUniversal Sightseeing\nFor Muslim Travelers\nWeather & Clothing\nTourist Information\nCenter\nAbout Us\nPrivacy Policy\nTranslation Disclaimer\nNotations are based on the Specified Commercial Transaction Act\n City of Kyoto and Kyoto City Tourism Association.\nThis site is managed by the Kyoto City Tourism Association (DMO KYOTO).\nhttps://www.kyokanko.or.jp/\nKyoto Travel\nKyoto City Official Guide\nFollow us on\nSubscribe to the Newsletter\nTravel Trade & Media\n City of Kyoto and Kyoto City Tourism Association.\nThis site is managed by the Kyoto City Tourism Association (DMO KYOTO).\nhttps://www.kyokanko.or.jp/\nTOP",
+              "annotations": null,
+              "_meta": null
+            }
+          ]
+        }
+      },
+      {
+        "url": "https://www.mrkyoto.com/transportation",
+        "content": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[visible] Getting Around Kyoto - Transportation Guide, Trains, Buses & Passes | MrKyoto - Your Complete Guide to Kyoto, Japan\nSkip to main content\nMr\nKyoto\nHome\nTemples & Shrines\nItineraries\nNeighborhoods\nTransportation\nHotel Deals\nHome\nTemples & Shrines\nItineraries\nNeighborhoods\nTransportation\nHotel Deals\nKyoto Transportation Guide\nEverything you need to know about getting to and around Kyoto, including trains, buses, passes, and money-saving tips.\nGetting to Kyoto\nFrom Tokyo\nTokaido Shinkansen\nDuration: 2h 15min (Nozomi), 2h 45min (Hikari)\nCost: 13,320 (regular), 13,850 (reserved)\nFrequency: Every 10 minutes (peak)\nTokyo Station  Kyoto Station\n Covered by JR Pass (Hikari/Kodama only)\nBook Tickets\nFrom Osaka\nJR Kyoto Line (Special Rapid)\nDuration: 29 minutes\nCost: 570\nHankyu Railway:\n43 min, 410\nKeihan Railway:\nTo eastern Kyoto\n JR Line covered by JR Pass\nJR Info\nHankyu\nFrom Kansai Airport (KIX)\nHaruka Limited Express\nDuration: 75 minutes (direct)\nCost: 3,430 (reserved seat)\nFrequency: Every 30 minutes\nBudget:\nLocal trains 2h, 1,880\n Haruka covered by JR Pass\nICOCA Card Info\nAccess Guide\nGetting Around Kyoto\nKyoto's public transportation is efficient and tourist-friendly. Most attractions are accessible by bus.\nCity Buses (Most Popular)\nOverview\n Extensive network covering all major sites\n Flat fare: 230 (cash or IC card)\n Operates: Approximately 6:00 AM - 11:00 PM\n Board from rear, pay when exiting front\n English announcements and digital displays\nDay Pass (Highly Recommended)\n\n700\nunlimited city bus rides\n Pays for itself after just 3 rides (690)\n Buy at Kyoto Station, tourist info, or from driver\n Valid until last bus of purchase day\n Insert into card reader when boarding\nKey Routes:\n#5 (Ginkaku-ji, Heian Shrine), #100/#101 (temple circuit), #12 (Arashiyama), #205 (Kinkaku-ji), #206 (Kiyomizu-dera, Gion)\nView Bus Routes & Map\nSubway (Fast & Efficient)\nTwo Lines\n\nKarasuma Line (Green):\nKyoto Station  North\n\nTozai Line (Red):\nEast  West\n Fare: 220-360 (distance-based)\n Operates: 5:30 AM - 12:30 AM\n Not covered by bus day pass\nKey Stations\n\nKyoto:\nMain station, connection hub\n\nKarasuma Oike:\nTransfer between lines\n\nKeage:\nNanzen-ji Temple area\n\nHigashiyama:\nEastern temple district\nSubway Map & Schedule\nJR & Private Trains\nJR Lines\nSagano/San-in Line:\nArashiyama (15 min, 240)\nNara Line:\nFushimi Inari (5 min, 150)\n JR Pass accepted\nKeihan Line\nMain Line:\nGion, Fushimi Inari\nConnects to Osaka and Uji\nUseful for eastern temples\nHankyu Line\nKyoto Line:\nKawaramachi downtown\nArashiyama Line:\nTo bamboo grove area\nCheaper than JR to Osaka\nBicycle Rentals\nRental Details\n Cost: 1,000-1,500/day (standard)\n Electric bikes: 2,000-2,500/day\n Many shops near Kyoto Station\n Passport/deposit usually required\n Kyoto is mostly flat (except hills)\nBest Cycling Routes\n Arashiyama riverside & bamboo grove\n Philosopher's Path (2km canal path)\n Downtown Kyoto & Nishiki Market\n Kamo River bike paths\n Avoid hilly areas (Higashiyama, Kiyomizu)\nTaxis\n Base fare: 600-700 (first 1-2 km)\n After: ~80 per 300-400m\n Night surcharge: +20% (10 PM-5 AM)\n Widely available at stations\n Many drivers don't speak English\n Show destination in Japanese/map\nWalking\n Many temples clustered together\n Higashiyama: Walk temple to temple\n Gion to Kiyomizu: 20-25 minutes\n Northern temples: 20-40 min apart\n Kyoto is very walkable & safe\n Combine walking with occasional buses\nMoney-Saving Passes & Tips\nKyoto Bus Pass\n700\nUnlimited bus rides for one day\n Best value for tourists\n Covers most attractions\n Easy to use\nHow to Buy Pass\nJR Pass (Nationwide)\n50,000\n7 days unlimited JR trains (2024 price)\n Includes most Shinkansen (not Nozomi/Mizuho)\n Perfect for Tokyo-Kyoto-Osaka trips\n Must buy before arriving in Japan\n 14-day pass: 80,000\nBuy JR Pass\nIC Cards (Suica/ICOCA)\n500 deposit\nRechargeable contactless card\n Works on ALL trains, buses, subways\n Tap and go - no ticket needed\n Use at convenience stores & vending machines\n Refundable deposit when returning\nSuica\nICOCA\nPro Tips\n Save Money\n Get 700 bus pass for 3+ rides/day (pays for itself)\n Walk between nearby temples (free & scenic)\n IC card gives slight discount over cash fares\n JR Pass only worth it if visiting multiple cities\n Rent bikes for Arashiyama/Philosopher's Path areas\n Timing & Navigation\n Avoid buses during rush hour (7:30-9 AM, 5-7 PM)\n Start early - first buses around 6 AM\n Last buses typically 9-11 PM (varies by route)\n Google Maps works perfectly for Kyoto transit\n \"Japan Transit Planner\" app is also excellent\nPlan Your Kyoto Journey\nCombine transportation with our curated itineraries for the perfect trip.\nBrowse Itineraries\nView Hotel Deals\nMr\nKyoto\nSaga Arashiyama\n1 / 14\nExplore Kyoto\nTemples & Shrines\nNeighborhoods\nItineraries\nTransportation\nPlan Your Trip\nHotel Deals\nBest Time to Visit\nCherry Blossoms\nAutumn Foliage\nAbout\nAbout MrKyoto\nPrivacy Policy\nTerms of Service\nAffiliate Disclosure\nContact\n 2025 MrKyoto. All rights reserved.\nAffiliate links help support this site.\nLIVE\n\nWe use cookies to improve your experience.\nLearn more\nReject\nAccept",
+              "annotations": null,
+              "_meta": null
+            }
+          ]
+        }
+      },
+      {
+        "url": "https://japancheapo.com/travel/the-complete-guide-to-getting-around-in-kyoto/",
+        "content": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[visible] The Complete Guide to Getting Around in Kyoto | Japan Cheapo\nCustomize & book this perfect\n10-day Tokyo/Kyoto/Osaka/Hakone trip\nAll Cities\nTokyo\nHong Kong\nLondon\nSingapore\nJR Tickets\nTokyo Cheapo ()\nLog in\nThe ultimate guide to Japan travel\nAll Cities\nTokyo\nHong Kong\nLondon\nSingapore\nJR Tickets\nTokyo Cheapo ()\nSections\nTravel\nFood and Drink\nThings to Do\nLiving\nItineraries\nEvents\nThis Week\nThis Month\nNext Month\nAll Events\nRegion Guides\nAomori\nHIroshima\nHokkaido\nKanazawa\nKyoto\nNagasaki\nNara\nOkinawa\nOsaka\nAll Guides \nAccommodation\nHostels\nHotels\nRyokan\nVacation Rentals\nAll\nTours & Tickets\nJapan Jobs\nJobs with Visas\nEducation & Teaching\nJobs in Tokyo\nAll Jobs\nEvents\nTours\nEating\nStay\nPic:\nGetty Images\nThe Complete Guide to Getting Around in Kyoto\nAugust 30th, 2023\t\t\t\t\t\t\t\t | Maria Danuco\nHome\nTravel\nWritten by\nMaria Danuco\nKnowing how to get around in Kyoto is the key to making sure your trip to the ancient capital is as smooth as possible. The\nworld famous attractions\nare spread across the city, and you dont want to waste time trekking back and forth. So to save you the trouble, heres everything you need to know about transport in Kyoto.\nJump to:\nThe basics\nTrain\nSubway\nBus\nCycling\nWalking\nTravel passes\nFrequently asked questions\nThe basics of getting around in Kyoto\nKyoto City map.\n|Photo by Japan Cheapo\nThere are quite a few different transport options in Kyoto and\na whole lot of things to do\nspread across the city.\nPublic transport options like trains, buses, and subways all accept IC transport cards. The local transport card is called the ICOCA but Tokyos\nSUICA\nand\nPASMO\ntransport cards are also accepted. JR train lines stop at\nKyoto Station\n, and so does the Shinkansen. If youre\ntraveling from Tokyo to Kyoto\nby Shinkansen, this is where youll get off. Some subway lines and bus routes also stop at Kyoto Station, but a number of other subway and private train lines do not.\nSuggested Activity\nBrunch at Nishiki Market in Kyoto\nStart your day the right way -- with a delicious brunch in \"Kyoto's kitchen\", also known as Nishiki Market. The market has a long history, going back more than 400 years.\nClick here for details\nNavigating Kyoto is easy as the city is laid-out in a grid with streets running north to south, and east to west. Its also fairly flat so walking and cycling is certainly possible.\nNeed help navigating Kyoto Station? Then check out our\nKyoto Station survival guide\n.\nKyoto Station\nAddress:\nHigashishiokoji Kamadonocho, Shimogyo Ward, Kyoto, Kyoto Prefecture 600-0000, Japan\nRead more\nTake the train\nThere are so many train lines in Kyoto that it can get a bit overwhelming. However, the key thing to understand is that there are JR train lines and private train company lines. Each train company has different fee systems, and might not accept certain passes. For example, you usually cant use a\nJR Pass\non a private train line. An IC card can be used on both private and JR lines. There are some trains and stations that dont accept IC cards, but they are fairly out-of-the-way for most tourists. Also keep in mind that not all train lines pass through Kyoto Station.\nFushimi Inari Shrine can be reached by train.|Photo by Getty Images.\nIn general, you will only take the train in Kyoto if youre traveling further afield. For example, you could take a train for a\nday trip to Nara\n. Most major attractions in Kyoto dont have train stations nearby, except for\nFushimi Inari Shrine\nand\nArashiyama\n.\nRide the subway\nKyoto has two subway lines which are part of the Kyoto Municipal Subway. The Karasuma Line runs north-south from Kokusaikaikan Station through Kyoto Station and on to Takeda Station. It can get you to places like\nGosho Imperial Palace\nand\nKyoto Botancial Gardens\n.\nRide the subway to Nij Castle.\n|Photo by iStock.com/coward_lion\nThe other subway line is the Tzai Line which runs east-west from Uzumasa Tenjingawa Station to Rokujizo Station. Attractions along the Tzai Line include\nNij Castle\nand the\nHigashiyama district\n.\nThe two subway lines intersect at Karasuma Oike Station. There are also a few stations where you can transfer between the subway and trains, including Kyoto Station, Nij Station, and Misasagi Station.\nSuggested Activity\nHighly Recommended Osaka Food Tour\nBook this best-selling tour and see why Osaka is known as Japan's kitchen. Taste famous dishes like okonomiyaki, kushikatsu and more, with a friendly local guide.\nClick here for details\nCatch a bus\nBuses are a convenient way to get around in Kyoto. In fact, there is at least one bus stop near most major attractions. Read our guide to\nTraveling Around Kyoto by Bus\nfor more details.\nHowever, do keep in mind that\novercrowding on buses has been causing problems for locals\n. If youre traveling with large suitcases, wed encourage you to use alternative methods of transport.\nCycle around\nKyoto is a relatively flat city, so its great for cycling. You can either\njoin a bike tour\n, or\nrent a bike\n, the choice is yours. Just make sure you follow the local laws and road safety rules to avoid any trouble. You should ride on the left-hand side of the road and if a sidewalk has a bike lane, you can ride there too. We also recommend against parking anywhere that has a  sign  it means no bicycle parking. Of course, youll probably see plenty of local cyclists breaking these rules, but its best to play it safe.\nGo for a walk\nWalking is the ultimate Cheapo mode of transport and Kyoto is a very walkable city. The city is fairly flat and the roads use a grid system, so its comfortable for strolling and you dont need to worry about getting lost. Major roads have clearly marked footpaths, but if you walk along residential streets youll be sharing the path with cars and cyclists. Dont let that discourage you though, its quite safe as long as you keep an eye out for oncoming traffic.\nThe Philosophers Path in the spring.|Photo by Getty Images\nKeep in mind that Kyotos attractions are quite spread out. We recommend picking a neighborhood to wander around, rather than trying to trek between attractions at different ends of the city.\nThe Philosophers Path\nis ideal for a quiet stroll, or head to Gion for\ngeisha spotting\n. Those who prefer walking with purpose to meandering, should consider\njoining a walking tour\n.\nSuggested Activity\nUniversal Studios Japan Tickets\nIf you want to get ahead of the game and run straight to the rides, getting your tickets through an authorized and international seller like Klook is the way to go.\nClick here for details\nTravel passes and discounts for Kyoto\nThere is a huge variety of\nKyoto travel passes\navailable. We like the Skyhop: Hop-on Hop-off Sightseeing Bus because it has a multi-lingual audio guide and you can\nbuy passes online\n. If youre just planning a day trip from Osaka, the\nKyoto-Osaka Sightseeing Pass\nor the\nHankyu Tourist Pass\nare good options.\nFrequently asked questions\nCan you take a taxi in Kyoto?\nYes, you definitely can. However, its usually an expensive option, unless youre traveling in a group. There are taxi stands outside most stations, otherwise you can hail one in the street.\nWhats the best way of getting around in Kyoto?\nTheres no single answer to this because it really depends on where youd like to go. You can take the train, subway, bus, or even walk or cycle to lots of attractions in Kyoto.\nCan you catch an Uber in Kyoto?\nYou can catch an Uber or other ride-share service in Kyoto, but theyre not exactly the same as in other countries. Ride-shares in Japan are basically just taxi booking services. And theyre not necessarily cheaper than hailing a regular taxi.\nWhile we do our best to ensure its correct, information is subject to change.\nOpen with Maps\nWritten by:\nMaria Danuco\nMaria's Japan favorites are:\nFukui Prefectural Dinosaur Museum\n,\nFushimi Inari Shrine\nFiled under:\nTravel\nTags:\nTransport\nTransportation\nGet the best Japan Cheapo hacks direct to your inbox\nSubscribe\nRelated Posts\nMore Posts\n11 Best Places to See Cherry Blossoms in Japan\nJanuary 27th, 2026 ",
+              "annotations": null,
+              "_meta": null
+            }
+          ]
+        }
+      },
+      {
+        "url": "https://matcha-jp.com/en/11409",
+        "content": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[visible] Kyoto Transportation Guide: Subway, Bus, and Discount Passes - Japan Travel Guide MATCHA\nLoading...\nCherry Blossoms and Airplanes: The Best Places to Visit in Narita\nArea\nTokyo\nOsaka\nKyoto\nHokkaido\nFukuoka\nOkinawa\nKanagawa\nOkayama\nAll areas\nInterest\nFood & Drink\nAccommodation\nThings To Do\nCulture\nAll the categories\nTravel Tips\nTransportation\nWeather & Seasons\nDisasters\nLong-Term Stay\nTravel Tips\nCoupons\nNews\nMATCHA\nAbout MATCHA\nCompany Profile\nNow Hiring\nContact Us\nKyoto\nCoupons\nNews\nMATCHA Special Features\nKyoto\nTransportation\nPasses\nKyoto Transportation Guide: Subway, Bus, and Discount Passes\nTo get around in Kyoto, you'll be using buses, the Kyoto subway, or trains. Learn the advantages of using each transportation type and cost-effective passes.\nWritten by\nJacky Chen\nBorn in Taipei, Taiwan. I worked in the inbound tourism industry in Kyoto, writing a blog about travel in Japan. I joined MATCHA in October 2019.\r\nHobbies: travel, watching trains, visiting stylish cafes, sweets, collecting seal stamps, watching musicals, taking photos, and others - so many, in fact, that I find it weird myself.\nmore\nThis service includes sponsored advertisements.\nHow to Get Around in Kyoto\nKyoto\nhas a complex transportation network, with local buses, subway, and different railway companies serving each part of the city. Depending on where you wish to travel next, you might need to use a combination of transportation means.\nThere are several discount passes for visitors to Japan that you can use for cost-effective travel. Read one to learn more about Kyoto's transportation network.\nKyoto Transportation\n1.\nPublic Buses\n2.\nKyoto City Subway\n3.\nTaxis\n4.\nJR West Japan Trains\n5.\nHankyu Railway\n6.\nKeihan Railway\n7.\nEizan Electric Railway\n8.\nKeifuku Electric Railroad\n9.\nKansai Thru Pass\nBook Shinkansen tickets with Mt. Fuji views: Tokyo - Kyoto\nPublic Buses\nPhoto by Pixta\nWhen exploring\nKyoto\n, the most commonly used mode of transportation is the\nbus\n. There are three main bus operators in the city:\n- Kyoto City Transportation Bureau (pale green)\n- Keihan Bus (red and white)\n- JR West Japan Bus (white and blue)\nEach operates different routes.\nKyoto City Subway: For Fast Travel Within Kyoto City\nPhoto by Pixta\nKyoto has a fast subway system consisting of the North-South Line and the East-West Line, forming a cross-shaped network.\nThe North-South Line is connected to the Kintetsu Nara Line, while the East-West Line connects to the Keihan Otsu Line. The starting fare for the Kyoto subway is 220 yen, with a maximum fare of 360 yen based on the distance.\nShijo Station and Karasuma Oike Station are bustling central locations in Kyoto, while Nijojo-mae Station is right next to Nijo Castle, a World Heritage Site.\nRead also\nNijo Castle: Highlights, Seasonal Events, and Budget-Friendly Tickets\nKyoto\nHigashiyama Station provides easy access to Heian Shrine. However, if you plan to explore Kyoto thoroughly, relying solely on the subway may be challenging because most subway stations are some distance away from the major attractions. We would suggest using both the subway and local buses to quickly reach your destination.\nRecommended Discount Ticket: Kyoto Subway and Bus 1-Day Pass\nIf you plan to take the Kyoto subway and buses, it's recommended to use the\nSubway and Bus 1-Day Pass\n, priced at 1,100 yen. After a few rides, you'll already break even!\nFrom fall 2023, the sale of the Bus One-Day Pass will be discontinued. However, unused passes can be used until the spring of 2024, after which they will no longer be valid.\n2-Day Pass for Kyoto and Osaka! Book the Kansai Thru Pass\n Return to the top of article.\nTaxis\nIn the Kyoto city area, the starting fare for a taxi is 500 yen, which covers the first kilometer. After that, every 279 meters will cost an additional 100 yen.\nIf you're traveling with a group of four, it might not be too expensive. Depending on the situation, using a taxi can also be a good choice!\nRead also\nJapan's Best Taxi Apps in English: GO, Grab, Uber, and More\nJR West Japan Trains: For Trips to Neighboring Cities\nPhoto by Pixta\nWhile JR West Japan's coverage within Kyoto City is limited, you can take their trains to go from Kyoto Station to Saga Arashiyama Station or Nijo Station. If you're heading to these destinations, taking the JR train is faster than the bus and reasonably priced.\nAlso, you'll be using the JR-West lines if you plan to visit attractions areas in northern Kyoto Prefecture such as Amanohashidate or Maizuru.\nBook the JR West Kansai Wide Area Pass (5 days)\nHankyu Railway: For Trips from Shijo Station to Osaka and Kobe\nPhoto by Pixta\nHankyu Railway is a suitable transportation option for journeys to Osaka or Kobe.\nHowever, when traveling from Kawaramachi to Arashiyama, most people choose to take the train to Katsura Station and transfer to the Arashiyama Line to reach Arashiyama Station, which is very close to the Togetsukyo Bridge.\nAnother way to use the Hankyu Railway lines is to travel from Kyoto's Kawaramachi Station to Karasuma Station, which is much faster than walking, making it suitable for those in a hurry.\n Return to the top of article.\nCost-effective and Convenient! The Hankyu One-Day and Two-Day Pass\nPictures courtesy of\nTravelearth/\nFor visitors to Japan, we recommend the\nHankyu Tourist Pass\n.\nThis pass is available as a one-day pass (700 yen) and a non-consecutive two-day pass (1,200 yen), and it is very convenient.\nWe highly recommend purchasing this pass because Hankyu Railway fares are generally quite affordable. Traveling from Osaka's Umeda Station to Kyoto's Kawaramachi Station or Kobe's Sannomiya on these \"long-distance trains\" alone makes it cost-effective.\nIf you have stops along the way or take longer journeys (e.g., from Kyoto Kawaramachi to Kobe Sannomiya), it becomes even more cost-effective.\nBook the Hankyu Tourist Pass\nKeihan Railway: For Trips from Kamogawa East Side to Osaka\nKeihan Railway primarily operates on the east side of Kyoto City. When traveling from areas like Demachiyanagi, Shijo, and Sanjo to the southern Fushimi area in the city center, taking the Keihan Railway is the fastest way.\nIf you're heading to places like Kyobashi or Yodobashi in Osaka, riding the Keihan Railway is the quickest option.\nSpecial Discount Tickets for Foreign Visitors\nPicture courtesy of\nflyinghsuan\nKeihan Railway offers one-day and two-day passes for its entire network, as well as expanded versions that include the Osaka Subway and Eizan Electric Railway. You can choose one according to your travel needs!\nIf you want to visit multiple attractions in one day, we recommend the Kyoto and Osaka Sightseeing Pass (overseas price: 900 yen), which is a very cost-effective ticket.\nIt allows you to start your journey from the center of Osaka and is a great choice because there are not many stations between the attractions along the Keihan Railway line. The starting fare on this line for just one station is 220 yen, so taking the train four times in one day will already make it worth the cost.\nBook the Kyoto & Osaka Sightseeing Pass\n Return to the top of article.\nEizan Electric Railway: For Trips to Ichijoji, Kibune, and Mount Kurama\nPhoto by Pixta\nTo travel from Demachiyanagi Station to Ichijoji, Kibune, and Mount Kurama, taking the Eizan Electric Railway is the fastest way!\nDuring the autumn foliage season, some sections are illuminated at night, and by boarding the trains shown in the pictures, you can enjoy the breathtaking view of maple leaves beautifully lit up through the large windows, making it feel like stepping into a fantasy world.\nCharming Streetcars: Keifuku Electric Railroad\nPhoto by Pixta\nThe Keifuku Electric Railroad, also known as Randen, is a railway line that runs from Shijo-Omiya Station to Arashiyama.\nThe Kitano Line passes by famous temples like Ryoanji and Jikkoin, while the Arashiyama Line goes by Hirokoji Temple and Togetsu Temple, offering a rich array of attractions along its route.\nThe annual limited-time Yokai Tram ev",
+              "annotations": null,
+              "_meta": null
+            }
+          ]
+        }
+      },
+      {
+        "url": "https://www.nationaltraveller.com/how-to-get-around-kyoto-info-costs-and-advice/",
+        "content": {
+          "content": [
+            {
+              "type": "text",
+              "text": "[visible] How to Get Around Kyoto: Info, Costs And Advice  National Traveller\nSkip to content\nFacebook\nX\nAbout\nContact\nCookie Policy\nPrivacy Policy\nTerms\n0\nMenu\nMenu\nShopping & Style\nWellness\nBest Places to Stay\nTravel Tips\nDestination Guides\nCruise\n0\nTravel Tips\nHow to Get Around Kyoto: Info, Costs And Advice\nWritten by\nOlivia Bennett\n32\nSHARES\nFacebook\nTwitter\nContents\nshow\nHow to Get to Kyoto from Kansai Osaka Airport\nHow to Get to Kyoto from Tokyo\nUsing Public Transportation: A Guide to Buses and Trains\nWalking in Kyoto\nCycling in Kyoto\nTaxi\nAs you step foot in Kyoto, Japans iconic image as a city steeped in tradition and spirituality becomes instantly apparent. With its breathtaking temples, serene gardens, and vibrant cultural scene, Kyoto is a destination that seamlessly blends the past with the present. However, navigating this megacity can be daunting, especially for first-time visitors. In this article, well delve into the best ways to explore Kyoto, from its efficient public transportation system to its most authentic neighborhoods.\nGetting Around Kyoto: A Guide to Public Transportation\nKyoto is a sprawling city with 1.5 million inhabitants, making it impossible to visit everything on foot. The general advice is to use a combination of buses and trains to move around the city efficiently. For a first impression, consider taking a guided tour of the city, which will help you get familiar with the landmarks and identify reference points.\nHow to Get to Kyoto from Kansai Osaka Airport\nSince Kyoto does not have an airport, the most convenient way to reach the city is by taking the Haruka Express train from Kansai International Airport (KIX). This train connects the airport to Kyoto Station in just 78 minutes, and tickets can be booked online. Alternatively, you can take a bus or book a private transfer.\nHow to Get to Kyoto from Tokyo\nKyoto is approximately 500 km away from Tokyo, but its well-connected by the Tkaid Shinkansen line. Take the Nozomi train for the fastest journey (140 minutes) and enjoy the scenic views of Japans countryside along the way.\nUsing Public Transportation: A Guide to Buses and Trains\nKyotos public transportation system is extensive, with buses covering every corner of the city. The subway only has two lines that dont touch most attractions in the city, making buses a more convenient option for tourists.\nKyoto City Bus (green buses)\nand Kyoto Bus (pink-rose red buses) are the main bus companies, offering a comprehensive network of routes.\nThe Raku Bus is particularly useful for tourists, as it starts from Kyoto Station and goes to main attractions without making any stops.\nConsider purchasing a Japan Rail Pass for unlimited train travel in any destination.\nWalking in Kyoto\nWhile walking can be a great way to experience Kyotos authentic atmosphere, the citys vastness makes it impossible to visit everything on foot. Start with a guided tour of the city to get familiar with landmarks and identify reference points.\nSome must-visit areas include:\nGion for its geisha culture\nPontocho for its traditional shops and restaurants\nKiyomizudera for its stunning views of Kyoto\nHeian Jingu for its beautiful gardens\nCycling in Kyoto\nA convenient and eco-friendly way to explore Kyoto is cycling. Bike rental shops like Carillon offer affordable rates, with 24-hour rentals starting at 500.\nBe careful where you leave your bike, as its forbidden on the road, at train stations, or in city centers. Designated parking lots (150 for 8 hours) are available for bikes.\nConsider taking a guided bike tour to navigate efficiently and safely.\nTaxi\nTaxis may seem like an unusual option in Kyoto, but they can be cost-effective, especially if youre traveling with others.\nOpt for tourist-friendly taxis with the phrase foreigner friendly written on them to communicate in English with the driver. The light turns red when youre looking, green or blue means its occupied.\nConclusion\nKyoto is a city that seamlessly blends tradition and modernity, offering something for everyone. By using its efficient public transportation system, exploring authentic neighborhoods, and taking advantage of eco-friendly options like cycling, youll be able to experience the best of this cultural gem.\nFrequently Asked Questions\nQ: How do I get to Kyoto from Kansai Osaka Airport?\nA: Take the Haruka Express train from KIX airport to Kyoto Station.\nQ: Can I use public transportation in Kyoto for free?\nA: No, most public transportation options require payment. Consider purchasing a Japan Rail Pass or City Bus All-day Pass for convenience.\nQ: Is cycling in Kyoto safe?\nA: Be careful where you leave your bike, as its forbidden on the road, at train stations, or in city centers. Designated parking lots are available for bikes.\nQ: Can I use taxis in Kyoto?\nA: Yes, but opt for tourist-friendly taxis with the phrase foreigner friendly written on them to communicate in English with the driver.\nQ: How do I navigate Kyotos subway system?\nA: The subway only has two lines that dont touch most attractions. Consider using buses instead.\nQ: What is the best way to explore Kyotos authentic neighborhoods?\nA: Start with a guided tour of the city to get familiar with landmarks and identify reference points, then move on to walking and cycling for a more immersive experience.\nAdditional Tips\nBe prepared for crowds during peak travel seasons.\nLearn basic Japanese phrases to communicate with locals.\nDont be afraid to ask for help from locals or tourist information centers.\nBy following these tips and being prepared for your\ntrip\n, youll have an unforgettable experience exploring Kyotos unique blend of traditional and modern culture.\nfrom the United States, she developed a love for travel early on through family road trips and weekend adventures.Over the years, she has lived in several countries, with South Africa, Amsterdam, and Argentina holding a special place in her heart. Now based in London, UK, she continues to share her experiences through her writing, focusing on both well-known destinations and hidden gems.Through her blog and contributions to NationalTraveller.com, Olivia hopes to inspire others to explore the world with curiosity and an open mind.\nAuckland, New Zealand: Where it Is, When to go And What to See\nAmsterdam And Surroundings Itinerary in 7 Days\nLeave a Comment\nCancel reply\nComment\nName\nEmail\nWebsite\nSave my name, email, and website in this browser for the next time I comment.\nNETWORK\nCarvira\nEdition Time\nThe Market Capitalist\nCATEGORIES\nBest Places to Stay\nCruise\nDestination Guides\nEvents & Festivals\nFood & Drink\nNews\nShopping & Style\nTravel Tips\nWellness\n\n2026 National Traveller.\nAbout\nContact\nCookie Policy\nPrivacy Policy\nTerms of Service\nClose\nShopping & Style\nWellness\nBest Places to Stay\nTravel Tips\nDestination Guides\nCruise\nSearch for:",
+              "annotations": null,
+              "_meta": null
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "original_query": "Plan a 4-day trip to Kyoto, Japan for a couple in cherry blossom season. Budget is $3000 excluding flights.",
+  "session_context": {
+    "session_id": "70454453",
+    "created_at": "2026-02-07T08:54:13.354200",
+    "file_manifest": [],
+    "memory_context": null
+  },
+  "previous_output": {
+    "transportation_costs_T005": [],
+    "call_self": true,
+    "next_instruction": "Synthesize the gathered public transport and taxi fare information into a daily and total transportation cost for a 4-day trip to Kyoto.",
+    "iteration_context": {
+      "current_step": "gather_transport_info",
+      "next_step": "synthesize_costs",
+      "trip_duration": "4 days",
+      "people": 2,
+      "location": "Kyoto"
+    },
+    "code_variants": {
+      "CODE_2A": "import json, ast\npublic_transport_data = kyoto_public_transport_search_results_1A\nif isinstance(public_transport_data, str):\n    try: public_transport_data = json.loads(public_transport_data)\n    except: public_transport_data = ast.literal_eval(public_transport_data) if public_transport_data.strip().startswith('[') else []\n\nresults_pt = []\nfor item in public_transport_data[:5]:\n    url = item if isinstance(item, str) else item.get('url')\n    if url and isinstance(url, str) and url.startswith('http'):\n        content = webpage_url_to_raw_text(url)\n        results_pt.append({'url': url, 'content': content})\nreturn {'kyoto_public_transport_details_2A': results_pt}",
+      "CODE_2B": "public_transport_urls = fetch_search_urls('Kyoto public transport costs for tourists', 5)\nreturn {'kyoto_public_transport_urls_2B': public_transport_urls}"
+    }
+  },
+  "iteration_context": {
+    "current_step": "gather_transport_info",
+    "next_step": "synthesize_costs",
+    "trip_duration": "4 days",
+    "people": 2,
+    "location": "Kyoto"
+  }
+}
+```

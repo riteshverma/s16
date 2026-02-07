@@ -1,0 +1,154 @@
+```json
+{
+  "proposed_itinerary_T009": [
+    {
+      "day": 1,
+      "theme": "Imperial Grandeur & Tranquil Gardens",
+      "activities": [
+        {
+          "time": "Morning (10:00 AM)",
+          "description": "Arrive at Kyoto Imperial Palace Park. Explore the vast grounds and admire the elegant Shidare-zakura (weeping cherry trees) near the pond. Plenty of space for a relaxed start.",
+          "location": "Kyoto Imperial Palace Park"
+        },
+        {
+          "time": "Lunch (12:30 PM)",
+          "description": "Enjoy a pre-packed picnic lunch from Daimaru or Takashimaya department stores within the park or nearby.",
+          "location": "Kyoto Imperial Palace Park"
+        },
+        {
+          "time": "Afternoon (2:00 PM)",
+          "description": "Travel to Kyoto Botanical Gardens. Stroll through diverse flora, with a good chance of encountering various cherry blossom species.",
+          "location": "Kyoto Botanical Gardens"
+        },
+        {
+          "time": "Late Afternoon (4:30 PM)",
+          "description": "Travel to Shoren-in Temple. Known for its beautiful gardens and often less crowded than major temples.",
+          "location": "Shoren-in Temple"
+        },
+        {
+          "time": "Evening (6:30 PM)",
+          "description": "Dinner in the Gion/Higashiyama area. Consider a restaurant with a view or one offering traditional Kyoto cuisine.",
+          "location": "Gion/Higashiyama"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "theme": "Philosophical Strolls & Eastern Kyoto Charm",
+      "activities": [
+        {
+          "time": "Morning (9:00 AM)",
+          "description": "Start early at the Philosopher's Path for a peaceful walk along the canal lined with cherry trees. Continue towards Nanzen-ji Temple.",
+          "location": "Philosopher's Path"
+        },
+        {
+          "time": "Late Morning (11:00 AM)",
+          "description": "Visit Ginkaku-ji (Silver Pavilion) as a detour from the Philosopher's Path.",
+          "location": "Ginkaku-ji"
+        },
+        {
+          "time": "Lunch (1:00 PM)",
+          "description": "Lunch near Ginkaku-ji or along the Philosopher's Path.",
+          "location": "Philosopher's Path/Ginkaku-ji area"
+        },
+        {
+          "time": "Afternoon (2:30 PM)",
+          "description": "Explore Heian Shrine, known for its beautiful gardens and vermilion weeping cherry blossoms.",
+          "location": "Heian Shrine"
+        },
+        {
+          "time": "Late Afternoon (4:00 PM)",
+          "description": "Consider a boat ride on the Biwako Sosui Canal for unique views of cherry blossoms against brick buildings.",
+          "location": "Biwako Sosui Canal"
+        },
+        {
+          "time": "Evening (7:00 PM)",
+          "description": "Dinner and evening stroll in the Okazaki area.",
+          "location": "Okazaki"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "theme": "Historic Heights & Cultural Immersion",
+      "activities": [
+        {
+          "time": "Morning (9:30 AM)",
+          "description": "Visit Kiyomizu-dera Temple. Enjoy the iconic wooden stage surrounded by cherry blossoms. Go early to avoid the worst crowds.",
+          "location": "Kiyomizu-dera Temple"
+        },
+        {
+          "time": "Late Morning (11:00 AM)",
+          "description": "Explore the charming streets of Higashiyama (Sannenzaka and Ninenzaka) leading down from Kiyomizu-dera. Look for unique crafts and souvenirs.",
+          "location": "Higashiyama District (Sannenzaka/Ninenzaka)"
+        },
+        {
+          "time": "Lunch (1:00 PM)",
+          "description": "Lunch in the Higashiyama area.",
+          "location": "Higashiyama District"
+        },
+        {
+          "time": "Afternoon (2:30 PM)",
+          "description": "Experience a traditional Japanese Tea Ceremony. Consider 'Orizuruya' or 'MAIKOYO' for a cultural immersion, potentially with kimono dressing.",
+          "location": "Cultural Experience Venue (e.g., Orizuruya, MAIKOYO)"
+        },
+        {
+          "time": "Late Afternoon (4:30 PM)",
+          "description": "Visit Maruyama Park, a popular spot for cherry blossoms, especially known for its large weeping cherry tree, which is beautiful in the evening.",
+          "location": "Maruyama Park"
+        },
+        {
+          "time": "Evening (6:30 PM)",
+          "description": "Enjoy dinner in the Gion district, perhaps with a chance to spot Geiko or Maiko.",
+          "location": "Gion"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "theme": "Art, History & Riverside Romance",
+      "activities": [
+        {
+          "time": "Morning (10:00 AM)",
+          "description": "Visit Nijo Castle, a UNESCO World Heritage site with beautiful gardens and 'nightingale floors'.",
+          "location": "Nijo Castle"
+        },
+        {
+          "time": "Late Morning (11:30 AM)",
+          "description": "Explore the Kamo River banks. Depending on the bloom, you might find cherry blossoms lining the river. Consider a leisurely walk or bike ride.",
+          "location": "Kamo River"
+        },
+        {
+          "time": "Lunch (1:00 PM)",
+          "description": "Lunch along the Kamo River or in the Pontocho alley area.",
+          "location": "Kamo River/Pontocho"
+        },
+        {
+          "time": "Afternoon (2:30 PM)",
+          "description": "Consider a cultural experience like calligraphy or a sushi-making class if time and interest permit.",
+          "location": "Various cultural experience centers"
+        },
+        {
+          "time": "Late Afternoon (4:00 PM)",
+          "description": "A final relaxing stroll or souvenir shopping in an area of your choice.",
+          "location": "Kyoto Station area or favorite district"
+        },
+        {
+          "time": "Evening",
+          "description": "Departure.",
+          "location": "N/A"
+        }
+      ]
+    }
+  ],
+  "key_considerations_T009": [
+    "The peak bloom window is estimated to be from April 2nd to April 10th, 2026. Flexibility is key as bloom times can vary.",
+    "Prioritize early morning visits to popular attractions like Kiyomizu-dera and the Philosopher's Path to minimize crowds.",
+    "Utilize Kyoto's efficient public transport (subway, buses) or consider taxis for convenience, especially for couples.",
+    "Packing a picnic lunch is recommended to save time and avoid busy restaurants during peak season.",
+    "Reservations for popular cultural experiences (tea ceremony, Maiko dinner) are highly recommended well in advance.",
+    "Evening illuminations at some cherry blossom spots (e.g., Maruyama Park, Gion Shirakawa) can offer a different, often less crowded, experience.",
+    "This itinerary groups attractions geographically to reduce travel time, but individual interests may require adjustments."
+  ]
+}
+```

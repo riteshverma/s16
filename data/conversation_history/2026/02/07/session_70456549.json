@@ -1,0 +1,198 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {
+    "session_id": "70456549",
+    "original_query": "share price of TCS",
+    "file_manifest": [],
+    "created_at": "2026-02-07T09:29:09.577410",
+    "status": "completed",
+    "globals_schema": {
+      "tcs_share_price_T001": "The current price of TCS.NS is $2941.60",
+      "formatted_share_price_T002": []
+    }
+  },
+  "nodes": [
+    {
+      "description": "Initial Query",
+      "agent": "System",
+      "status": "completed",
+      "output": null,
+      "error": null,
+      "cost": 0.0,
+      "start_time": null,
+      "end_time": null,
+      "execution_time": 0.0,
+      "id": "ROOT"
+    },
+    {
+      "id": "Query",
+      "description": "Formulate execution plan",
+      "agent": "PlannerAgent",
+      "status": "completed",
+      "reads": [
+        "original_query"
+      ],
+      "writes": [
+        "plan_graph"
+      ],
+      "output": {
+        "plan_graph": {
+          "nodes": [
+            {
+              "id": "T001",
+              "description": "Retrieve current share price of TCS",
+              "agent": "RetrieverAgent",
+              "agent_prompt": "Fetch the most recent publicly available share price for Tata Consultancy Services (TCS). Include the ticker symbol, current price, and the timestamp of the last trade.",
+              "reads": [],
+              "writes": [
+                "tcs_share_price_T001"
+              ]
+            },
+            {
+              "id": "T002",
+              "description": "Format share price data for user",
+              "agent": "FormatterAgent",
+              "agent_prompt": "Present the TCS share price information retrieved in `tcs_share_price_T001` in a clear and concise format. Include the company name, ticker symbol, current price, and the time of the last trade. The response should be direct and avoid motivational language or unnecessary framing.",
+              "reads": [
+                "tcs_share_price_T001"
+              ],
+              "writes": [
+                "formatted_share_price_T002"
+              ]
+            }
+          ],
+          "edges": [
+            {
+              "source": "ROOT",
+              "target": "T001"
+            },
+            {
+              "source": "T001",
+              "target": "T002"
+            }
+          ]
+        },
+        "next_step_id": "T001",
+        "interpretation_confidence": 0.95,
+        "ambiguity_notes": []
+      },
+      "error": null,
+      "cost": 0.0,
+      "start_time": null,
+      "end_time": "2026-02-07T09:29:11.805501",
+      "execution_time": 0.0
+    },
+    {
+      "id": "T001",
+      "description": "Retrieve current share price of TCS",
+      "agent": "RetrieverAgent",
+      "agent_prompt": "Fetch the most recent publicly available share price for Tata Consultancy Services (TCS). Include the ticker symbol, current price, and the timestamp of the last trade.",
+      "reads": [],
+      "writes": [
+        "tcs_share_price_T001"
+      ],
+      "status": "completed",
+      "output": {
+        "tcs_share_price_T001": [],
+        "call_self": false,
+        "code_variants": {
+          "CODE_1A": "price_info = get_stock_price('TCS.NS')\nreturn {'tcs_share_price_T001': price_info}",
+          "CODE_1B": "current_price = get_stock_metric('TCS.NS', 'currentPrice')\nlast_trade_timestamp = get_stock_metric('TCS.NS', 'regularMarketTime')\nreturn {'tcs_share_price_T001': {'currentPrice': current_price, 'regularMarketTime': last_trade_timestamp}}"
+        },
+        "execution_result": {
+          "tcs_share_price_T001": "The current price of TCS.NS is $2941.60"
+        },
+        "execution_status": "success",
+        "execution_error": null,
+        "execution_time": "2026-02-07 14:59:21",
+        "executed_variant": "CODE_1A",
+        "execution_logs": ""
+      },
+      "error": null,
+      "cost": 0.0013011000000000001,
+      "start_time": "2026-02-07T09:29:11.821255",
+      "end_time": "2026-02-07T09:29:21.832269",
+      "execution_time": 10.011014,
+      "iterations": [
+        {
+          "iteration": 1,
+          "output": {
+            "tcs_share_price_T001": [],
+            "call_self": false,
+            "code_variants": {
+              "CODE_1A": "price_info = get_stock_price('TCS.NS')\nreturn {'tcs_share_price_T001': price_info}",
+              "CODE_1B": "current_price = get_stock_metric('TCS.NS', 'currentPrice')\nlast_trade_timestamp = get_stock_metric('TCS.NS', 'regularMarketTime')\nreturn {'tcs_share_price_T001': {'currentPrice': current_price, 'regularMarketTime': last_trade_timestamp}}"
+            }
+          },
+          "execution_result": {
+            "status": "success",
+            "result": {
+              "tcs_share_price_T001": "The current price of TCS.NS is $2941.60"
+            },
+            "raw": {
+              "tcs_share_price_T001": "The current price of TCS.NS is $2941.60"
+            },
+            "logs": "",
+            "execution_time": "2026-02-07 14:59:15",
+            "total_time": "5.847",
+            "executed_variant": "CODE_1A"
+          }
+        }
+      ],
+      "input_tokens": 7974,
+      "output_tokens": 175,
+      "total_tokens": 8149
+    },
+    {
+      "id": "T002",
+      "description": "Format share price data for user",
+      "agent": "FormatterAgent",
+      "agent_prompt": "Present the TCS share price information retrieved in `tcs_share_price_T001` in a clear and concise format. Include the company name, ticker symbol, current price, and the time of the last trade. The response should be direct and avoid motivational language or unnecessary framing.",
+      "reads": [
+        "tcs_share_price_T001"
+      ],
+      "writes": [
+        "formatted_share_price_T002"
+      ],
+      "status": "completed",
+      "output": {
+        "final_format": "markdown",
+        "markdown_report": "# TCS Share Price Information\n\n**Company Name:** Tata Consultancy Services\n\n**Ticker Symbol:** TCS.NS\n\n**Current Price:** $2941.60\n\n**Last Trade Time:** Data not available in the provided input.",
+        "call_self": false
+      },
+      "error": null,
+      "cost": 0.0003327,
+      "start_time": "2026-02-07T09:29:21.832269",
+      "end_time": "2026-02-07T09:29:22.911974",
+      "execution_time": 1.079705,
+      "iterations": [
+        {
+          "iteration": 1,
+          "output": {
+            "final_format": "markdown",
+            "markdown_report": "# TCS Share Price Information\n\n**Company Name:** Tata Consultancy Services\n\n**Ticker Symbol:** TCS.NS\n\n**Current Price:** $2941.60\n\n**Last Trade Time:** Data not available in the provided input.",
+            "call_self": false
+          }
+        }
+      ],
+      "input_tokens": 1846,
+      "output_tokens": 93,
+      "total_tokens": 1939
+    }
+  ],
+  "edges": [
+    {
+      "source": "ROOT",
+      "target": "Query"
+    },
+    {
+      "source": "Query",
+      "target": "T001"
+    },
+    {
+      "source": "T001",
+      "target": "T002"
+    }
+  ]
+}

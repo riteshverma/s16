@@ -1,0 +1,7 @@
+```json
+{
+  "final_format": "markdown",
+  "markdown_report": "# ICC Under-19 World Cup 2026: India Clinches Title\n\n**Winner:** India\n\n**Year:** 2026\n\nThe India U19 men's cricket team has been crowned champions of the ICC Under-19 World Cup 2026. They defeated England U19 in the final match held on Friday, February 6, 2026, at Harare Sports Club.",
+  "call_self": false
+}
+```

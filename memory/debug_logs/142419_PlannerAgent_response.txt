@@ -1,0 +1,163 @@
+```json
+{
+  "plan_graph": {
+    "nodes": [
+      {
+        "id": "T001",
+        "description": "Determine optimal cherry blossom viewing dates for Kyoto in 2026",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Retrieve historical data and forecasts for cherry blossom peak bloom dates in Kyoto, Japan for the 2026 season. Focus on providing a range of dates that are most likely to be ideal for viewing.",
+        "reads": [],
+        "writes": [
+          "cherry_blossom_dates_T001"
+        ]
+      },
+      {
+        "id": "T002",
+        "description": "Research top 4-day Kyoto itinerary options for cherry blossom season",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Search for popular and well-regarded 4-day Kyoto itineraries specifically designed for couples during cherry blossom season. Prioritize itineraries that balance cultural sites, scenic beauty, and unique experiences. Extract details on activities, locations, and estimated durations.",
+        "reads": [
+          "cherry_blossom_dates_T001"
+        ],
+        "writes": [
+          "itinerary_options_T002"
+        ]
+      },
+      {
+        "id": "T003",
+        "description": "Identify Kyoto accommodation options for couples within budget",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Identify a range of accommodation options in Kyoto suitable for couples during cherry blossom season, keeping the total budget (excluding flights) at $3000 for 4 nights. Focus on areas with good access to attractions and cherry blossom viewing spots. Extract details on price range, type of accommodation (e.g., ryokan, hotel), and amenities.",
+        "reads": [
+          "cherry_blossom_dates_T001"
+        ],
+        "writes": [
+          "accommodation_options_T003"
+        ]
+      },
+      {
+        "id": "T004",
+        "description": "Research dining experiences in Kyoto for couples",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Research diverse dining experiences in Kyoto suitable for couples during cherry blossom season, within a moderate budget. Include options for traditional Kaiseki, casual eateries, and unique culinary experiences. Extract details on cuisine type, price range per person, and typical booking recommendations.",
+        "reads": [],
+        "writes": [
+          "dining_options_T004"
+        ]
+      },
+      {
+        "id": "T005",
+        "description": "Estimate transportation costs within Kyoto for a 4-day trip",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Estimate the transportation costs within Kyoto for a 4-day trip for two people. Consider public transport (buses, trains), occasional taxis, and any relevant passes. Provide a daily and total estimate.",
+        "reads": [],
+        "writes": [
+          "transportation_costs_T005"
+        ]
+      },
+      {
+        "id": "T006",
+        "description": "Estimate activity and entrance fees for Kyoto itinerary",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Estimate the total cost of activities and entrance fees for popular attractions and experiences in Kyoto for a 4-day trip for two people during cherry blossom season. Focus on items typically included in a tourist itinerary.",
+        "reads": [
+          "itinerary_options_T002"
+        ],
+        "writes": [
+          "activity_costs_T006"
+        ]
+      },
+      {
+        "id": "T007",
+        "description": "Synthesize Kyoto trip plan components and refine budget",
+        "agent": "ThinkerAgent",
+        "agent_prompt": "Synthesize the retrieved information on cherry blossom dates, itinerary options, accommodation, dining, transportation, and activity costs. Propose a consolidated 4-day Kyoto trip plan for a couple during cherry blossom season. Refine the budget allocation to fit within the $3000 excluding flights constraint, highlighting potential areas for adjustment. Prioritize itinerary options that align with a 'conservative' planning strategy.",
+        "reads": [
+          "cherry_blossom_dates_T001",
+          "itinerary_options_T002",
+          "accommodation_options_T003",
+          "dining_options_T004",
+          "transportation_costs_T005",
+          "activity_costs_T006"
+        ],
+        "writes": [
+          "refined_trip_plan_T007",
+          "budget_allocation_T007"
+        ]
+      },
+      {
+        "id": "T008",
+        "description": "Format the detailed Kyoto trip plan and budget",
+        "agent": "FormatterAgent",
+        "agent_prompt": "Format the refined 4-day Kyoto trip plan for a couple during cherry blossom season, including a day-by-day itinerary, recommended accommodations, dining suggestions, and a detailed budget breakdown. Ensure the output is comprehensive and well-structured, aiming for a detailed report. The output should be suitable for direct use by the traveler. Include specific dates within the cherry blossom window identified.",
+        "reads": [
+          "refined_trip_plan_T007",
+          "budget_allocation_T007",
+          "cherry_blossom_dates_T001"
+        ],
+        "writes": [
+          "formatted_trip_plan_T008"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": "ROOT",
+        "target": "T001"
+      },
+      {
+        "source": "T001",
+        "target": "T002"
+      },
+      {
+        "source": "T001",
+        "target": "T003"
+      },
+      {
+        "source": "ROOT",
+        "target": "T004"
+      },
+      {
+        "source": "ROOT",
+        "target": "T005"
+      },
+      {
+        "source": "T002",
+        "target": "T006"
+      },
+      {
+        "source": "T001",
+        "target": "T007"
+      },
+      {
+        "source": "T002",
+        "target": "T007"
+      },
+      {
+        "source": "T003",
+        "target": "T007"
+      },
+      {
+        "source": "T004",
+        "target": "T007"
+      },
+      {
+        "source": "T005",
+        "target": "T007"
+      },
+      {
+        "source": "T006",
+        "target": "T007"
+      },
+      {
+        "source": "T007",
+        "target": "T008"
+      }
+    ]
+  },
+  "next_step_id": "T001",
+  "interpretation_confidence": 0.95,
+  "ambiguity_notes": []
+}
+```

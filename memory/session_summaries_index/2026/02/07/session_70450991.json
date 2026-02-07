@@ -1,0 +1,1315 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {
+    "session_id": "70450991",
+    "original_query": "Analyze all documents in my folder C:\\Users\\Monisha Srivastava\\Desktop\\L&T POWAI 27-28 NOV 24",
+    "file_manifest": [],
+    "created_at": "2026-02-07T07:56:31.765147",
+    "status": "completed",
+    "globals_schema": {
+      "file_list_T001": [
+        {
+          "name": "Bill _Stay at Hotel Ocean Suites.pdf",
+          "size": 2255396,
+          "type": "File"
+        },
+        {
+          "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx",
+          "size": 27401,
+          "type": "File"
+        },
+        {
+          "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf",
+          "size": 74394,
+          "type": "File"
+        },
+        {
+          "name": "demo1.mp4",
+          "size": 8883753,
+          "type": "File"
+        },
+        {
+          "name": "IMG_20180421_110010_cropped.JPG",
+          "size": 1838348,
+          "type": "File"
+        },
+        {
+          "name": "Monisha Resume Revised _ DND(SDG).pdf",
+          "size": 4017349,
+          "type": "File"
+        },
+        {
+          "name": "p2.jpg",
+          "size": 34406,
+          "type": "File"
+        },
+        {
+          "name": "Receipt 1 _ Uber From Home To IGI T-1D.pdf",
+          "size": 28964,
+          "type": "File"
+        },
+        {
+          "name": "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png",
+          "size": 116752,
+          "type": "File"
+        },
+        {
+          "name": "Receipt 3. Auto From Hotel to L&T Powai .jpeg",
+          "size": 139654,
+          "type": "File"
+        },
+        {
+          "name": "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf",
+          "size": 27705,
+          "type": "File"
+        },
+        {
+          "name": "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf",
+          "size": 537352,
+          "type": "File"
+        },
+        {
+          "name": "Receipt 6 _ Uber From IGI T-1C TO Home.pdf",
+          "size": 29143,
+          "type": "File"
+        }
+      ],
+      "document_analysis_results_T002": {
+        "Bill _Stay at Hotel Ocean Suites.pdf": {
+          "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+        },
+        "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": {
+          "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+        },
+        "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": {
+          "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+        },
+        "demo1.mp4": {
+          "type": "unsupported",
+          "message": "File type not supported for text extraction"
+        },
+        "IMG_20180421_110010_cropped.JPG": {
+          "type": "unsupported",
+          "message": "File type not supported for text extraction"
+        },
+        "Monisha Resume Revised _ DND(SDG).pdf": {
+          "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+        },
+        "p2.jpg": {
+          "type": "unsupported",
+          "message": "File type not supported for text extraction"
+        },
+        "Receipt 1 _ Uber From Home To IGI T-1D.pdf": {
+          "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+        },
+        "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": {
+          "type": "unsupported",
+          "message": "File type not supported for text extraction"
+        },
+        "Receipt 3. Auto From Hotel to L&T Powai .jpeg": {
+          "type": "unsupported",
+          "message": "File type not supported for text extraction"
+        },
+        "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": {
+          "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+        },
+        "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": {
+          "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+        },
+        "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": {
+          "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+        }
+      },
+      "synthesized_findings_T003": {
+        "summary": "Analysis of the provided documents could not be completed due to errors reaching the AI model for all text-extractable files. Unsupported file types were also encountered.",
+        "documents_processed": {
+          "Bill _Stay at Hotel Ocean Suites.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "demo1.mp4": "Unsupported file type",
+          "IMG_20180421_110010_cropped.JPG": "Unsupported file type",
+          "Monisha Resume Revised _ DND(SDG).pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "p2.jpg": "Unsupported file type",
+          "Receipt 1 _ Uber From Home To IGI T-1D.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": "Unsupported file type",
+          "Receipt 3. Auto From Hotel to L&T Powai .jpeg": "Unsupported file type",
+          "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+          "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+        },
+        "key_themes": [],
+        "entities": [],
+        "numerical_data": [],
+        "dates": []
+      },
+      "comprehensive_report_T004": []
+    }
+  },
+  "nodes": [
+    {
+      "description": "Initial Query",
+      "agent": "System",
+      "status": "completed",
+      "output": null,
+      "error": null,
+      "cost": 0.0,
+      "start_time": null,
+      "end_time": null,
+      "execution_time": 0.0,
+      "id": "ROOT"
+    },
+    {
+      "id": "Query",
+      "description": "Formulate execution plan",
+      "agent": "PlannerAgent",
+      "status": "completed",
+      "reads": [
+        "original_query"
+      ],
+      "writes": [
+        "plan_graph"
+      ],
+      "output": {
+        "plan_graph": {
+          "nodes": [
+            {
+              "id": "T001",
+              "description": "List all files in the specified directory",
+              "agent": "CoderAgent",
+              "agent_prompt": "List all files and their metadata (name, size, type) in the directory 'C:\\Users\\Monisha Srivastava\\Desktop\\L&T POWAI 27-28 NOV 24'. Ensure to handle potential errors like directory not found.",
+              "reads": [],
+              "writes": [
+                "file_list_T001"
+              ]
+            },
+            {
+              "id": "T002",
+              "description": "Analyze each document for content and extract key information",
+              "agent": "RetrieverAgent",
+              "agent_prompt": "For each document listed in `file_list_T001`, read its content. Identify the document type (e.g., PDF, DOCX, TXT). For each document, extract its main topics, key entities (people, organizations, locations), dates, and any numerical data or important figures. If a document is too large or complex for a single pass, prioritize extracting a summary and key takeaways.",
+              "reads": [
+                "file_list_T001"
+              ],
+              "writes": [
+                "document_analysis_results_T002"
+              ]
+            },
+            {
+              "id": "T003",
+              "description": "Synthesize findings from all analyzed documents",
+              "agent": "DistillerAgent",
+              "agent_prompt": "Synthesize the extracted information from `document_analysis_results_T002`. Group similar themes and findings across documents. Identify any overlapping information, discrepancies, or unique insights from each document. Structure the synthesis to highlight the key themes, entities, and numerical data discovered.",
+              "reads": [
+                "document_analysis_results_T002"
+              ],
+              "writes": [
+                "synthesized_findings_T003"
+              ]
+            },
+            {
+              "id": "T004",
+              "description": "Format the synthesized findings into a comprehensive report",
+              "agent": "FormatterAgent",
+              "agent_prompt": "Create a detailed and comprehensive report based on the `synthesized_findings_T003`. Organize the report logically, using headings, subheadings, and bullet points for clarity. Include a summary of all documents analyzed, key themes, identified entities, important dates, and significant numerical data. The report should be formatted in Markdown, aiming for a detailed output suitable for executive review.",
+              "reads": [
+                "synthesized_findings_T003"
+              ],
+              "writes": [
+                "comprehensive_report_T004"
+              ]
+            }
+          ],
+          "edges": [
+            {
+              "source": "ROOT",
+              "target": "T001"
+            },
+            {
+              "source": "T001",
+              "target": "T002"
+            },
+            {
+              "source": "T002",
+              "target": "T003"
+            },
+            {
+              "source": "T003",
+              "target": "T004"
+            }
+          ]
+        },
+        "next_step_id": "T001",
+        "interpretation_confidence": 0.95,
+        "ambiguity_notes": []
+      },
+      "error": null,
+      "cost": 0.0,
+      "start_time": null,
+      "end_time": "2026-02-07T07:56:35.133193",
+      "execution_time": 0.0
+    },
+    {
+      "id": "T001",
+      "description": "List all files in the specified directory",
+      "agent": "CoderAgent",
+      "agent_prompt": "List all files and their metadata (name, size, type) in the directory 'C:\\Users\\Monisha Srivastava\\Desktop\\L&T POWAI 27-28 NOV 24'. Ensure to handle potential errors like directory not found.",
+      "reads": [],
+      "writes": [
+        "file_list_T001"
+      ],
+      "status": "completed",
+      "output": {
+        "code_variants": {
+          "CODE_1A": "import os\n\ntarget_directory = 'C:\\\\Users\\\\Monisha Srivastava\\\\Desktop\\\\L&T POWAI 27-28 NOV 24'\nfile_details = []\n\ntry:\n    if not os.path.exists(target_directory):\n        raise FileNotFoundError(f\"Directory not found: {target_directory}\")\n    \n    for item_name in os.listdir(target_directory):\n        item_path = os.path.join(target_directory, item_name)\n        item_size = os.path.getsize(item_path)\n        item_type = \"Directory\" if os.path.isdir(item_path) else \"File\"\n        \n        file_details.append({\n            'name': item_name,\n            'size': item_size,\n            'type': item_type\n        })\n        \n    return { \"file_list_T001\": file_details }\n\nexcept FileNotFoundError as e:\n    return { \"error\": str(e) }\nexcept Exception as e:\n    return { \"error\": f\"An unexpected error occurred: {str(e)}\" }\n"
+        },
+        "execution_result": {
+          "file_list_T001": [
+            {
+              "name": "Bill _Stay at Hotel Ocean Suites.pdf",
+              "size": 2255396,
+              "type": "File"
+            },
+            {
+              "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx",
+              "size": 27401,
+              "type": "File"
+            },
+            {
+              "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf",
+              "size": 74394,
+              "type": "File"
+            },
+            {
+              "name": "demo1.mp4",
+              "size": 8883753,
+              "type": "File"
+            },
+            {
+              "name": "IMG_20180421_110010_cropped.JPG",
+              "size": 1838348,
+              "type": "File"
+            },
+            {
+              "name": "Monisha Resume Revised _ DND(SDG).pdf",
+              "size": 4017349,
+              "type": "File"
+            },
+            {
+              "name": "p2.jpg",
+              "size": 34406,
+              "type": "File"
+            },
+            {
+              "name": "Receipt 1 _ Uber From Home To IGI T-1D.pdf",
+              "size": 28964,
+              "type": "File"
+            },
+            {
+              "name": "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png",
+              "size": 116752,
+              "type": "File"
+            },
+            {
+              "name": "Receipt 3. Auto From Hotel to L&T Powai .jpeg",
+              "size": 139654,
+              "type": "File"
+            },
+            {
+              "name": "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf",
+              "size": 27705,
+              "type": "File"
+            },
+            {
+              "name": "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf",
+              "size": 537352,
+              "type": "File"
+            },
+            {
+              "name": "Receipt 6 _ Uber From IGI T-1C TO Home.pdf",
+              "size": 29143,
+              "type": "File"
+            }
+          ]
+        },
+        "execution_status": "success",
+        "execution_error": null,
+        "execution_time": "2026-02-07 13:26:38",
+        "executed_variant": "CODE_1A",
+        "execution_logs": "",
+        "file_list_T001": [
+          {
+            "name": "Bill _Stay at Hotel Ocean Suites.pdf",
+            "size": 2255396,
+            "type": "File"
+          },
+          {
+            "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx",
+            "size": 27401,
+            "type": "File"
+          },
+          {
+            "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf",
+            "size": 74394,
+            "type": "File"
+          },
+          {
+            "name": "demo1.mp4",
+            "size": 8883753,
+            "type": "File"
+          },
+          {
+            "name": "IMG_20180421_110010_cropped.JPG",
+            "size": 1838348,
+            "type": "File"
+          },
+          {
+            "name": "Monisha Resume Revised _ DND(SDG).pdf",
+            "size": 4017349,
+            "type": "File"
+          },
+          {
+            "name": "p2.jpg",
+            "size": 34406,
+            "type": "File"
+          },
+          {
+            "name": "Receipt 1 _ Uber From Home To IGI T-1D.pdf",
+            "size": 28964,
+            "type": "File"
+          },
+          {
+            "name": "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png",
+            "size": 116752,
+            "type": "File"
+          },
+          {
+            "name": "Receipt 3. Auto From Hotel to L&T Powai .jpeg",
+            "size": 139654,
+            "type": "File"
+          },
+          {
+            "name": "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf",
+            "size": 27705,
+            "type": "File"
+          },
+          {
+            "name": "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf",
+            "size": 537352,
+            "type": "File"
+          },
+          {
+            "name": "Receipt 6 _ Uber From IGI T-1C TO Home.pdf",
+            "size": 29143,
+            "type": "File"
+          }
+        ]
+      },
+      "error": null,
+      "cost": 0.00041835,
+      "start_time": "2026-02-07T07:56:35.155687",
+      "end_time": "2026-02-07T07:56:38.647193",
+      "execution_time": 3.491506,
+      "iterations": [
+        {
+          "iteration": 1,
+          "output": {
+            "code_variants": {
+              "CODE_1A": "import os\n\ntarget_directory = 'C:\\\\Users\\\\Monisha Srivastava\\\\Desktop\\\\L&T POWAI 27-28 NOV 24'\nfile_details = []\n\ntry:\n    if not os.path.exists(target_directory):\n        raise FileNotFoundError(f\"Directory not found: {target_directory}\")\n    \n    for item_name in os.listdir(target_directory):\n        item_path = os.path.join(target_directory, item_name)\n        item_size = os.path.getsize(item_path)\n        item_type = \"Directory\" if os.path.isdir(item_path) else \"File\"\n        \n        file_details.append({\n            'name': item_name,\n            'size': item_size,\n            'type': item_type\n        })\n        \n    return { \"file_list_T001\": file_details }\n\nexcept FileNotFoundError as e:\n    return { \"error\": str(e) }\nexcept Exception as e:\n    return { \"error\": f\"An unexpected error occurred: {str(e)}\" }\n"
+            }
+          },
+          "execution_result": {
+            "status": "success",
+            "result": {
+              "file_list_T001": [
+                {
+                  "name": "Bill _Stay at Hotel Ocean Suites.pdf",
+                  "size": 2255396,
+                  "type": "File"
+                },
+                {
+                  "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx",
+                  "size": 27401,
+                  "type": "File"
+                },
+                {
+                  "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf",
+                  "size": 74394,
+                  "type": "File"
+                },
+                {
+                  "name": "demo1.mp4",
+                  "size": 8883753,
+                  "type": "File"
+                },
+                {
+                  "name": "IMG_20180421_110010_cropped.JPG",
+                  "size": 1838348,
+                  "type": "File"
+                },
+                {
+                  "name": "Monisha Resume Revised _ DND(SDG).pdf",
+                  "size": 4017349,
+                  "type": "File"
+                },
+                {
+                  "name": "p2.jpg",
+                  "size": 34406,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 1 _ Uber From Home To IGI T-1D.pdf",
+                  "size": 28964,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png",
+                  "size": 116752,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 3. Auto From Hotel to L&T Powai .jpeg",
+                  "size": 139654,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf",
+                  "size": 27705,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf",
+                  "size": 537352,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 6 _ Uber From IGI T-1C TO Home.pdf",
+                  "size": 29143,
+                  "type": "File"
+                }
+              ]
+            },
+            "raw": {
+              "file_list_T001": [
+                {
+                  "name": "Bill _Stay at Hotel Ocean Suites.pdf",
+                  "size": 2255396,
+                  "type": "File"
+                },
+                {
+                  "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx",
+                  "size": 27401,
+                  "type": "File"
+                },
+                {
+                  "name": "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf",
+                  "size": 74394,
+                  "type": "File"
+                },
+                {
+                  "name": "demo1.mp4",
+                  "size": 8883753,
+                  "type": "File"
+                },
+                {
+                  "name": "IMG_20180421_110010_cropped.JPG",
+                  "size": 1838348,
+                  "type": "File"
+                },
+                {
+                  "name": "Monisha Resume Revised _ DND(SDG).pdf",
+                  "size": 4017349,
+                  "type": "File"
+                },
+                {
+                  "name": "p2.jpg",
+                  "size": 34406,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 1 _ Uber From Home To IGI T-1D.pdf",
+                  "size": 28964,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png",
+                  "size": 116752,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 3. Auto From Hotel to L&T Powai .jpeg",
+                  "size": 139654,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf",
+                  "size": 27705,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf",
+                  "size": 537352,
+                  "type": "File"
+                },
+                {
+                  "name": "Receipt 6 _ Uber From IGI T-1C TO Home.pdf",
+                  "size": 29143,
+                  "type": "File"
+                }
+              ]
+            },
+            "logs": "",
+            "execution_time": "2026-02-07 13:26:38",
+            "total_time": "0.03",
+            "executed_variant": "CODE_1A"
+          }
+        }
+      ],
+      "input_tokens": 1581,
+      "output_tokens": 302,
+      "total_tokens": 1883
+    },
+    {
+      "id": "T002",
+      "description": "Analyze each document for content and extract key information",
+      "agent": "RetrieverAgent",
+      "agent_prompt": "For each document listed in `file_list_T001`, read its content. Identify the document type (e.g., PDF, DOCX, TXT). For each document, extract its main topics, key entities (people, organizations, locations), dates, and any numerical data or important figures. If a document is too large or complex for a single pass, prioritize extracting a summary and key takeaways.",
+      "reads": [
+        "file_list_T001"
+      ],
+      "writes": [
+        "document_analysis_results_T002"
+      ],
+      "status": "completed",
+      "output": {
+        "document_analysis_results_T002": [],
+        "call_self": false,
+        "code_variants": {
+          "CODE_1A": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        try:\n            content = preview_document(file_name)\n            topics = ask_document('Extract main topics from this document.', content, [], file_name)\n            entities = ask_document('Extract key entities (people, organizations, locations) from this document.', content, [], file_name)\n            dates = ask_document('Extract all dates mentioned in this document.', content, [], file_name)\n            numerical_data = ask_document('Extract all numerical data from this document.', content, [], file_name)\n            results[file_name] = {'topics': topics, 'entities': entities, 'dates': dates, 'numerical_data': numerical_data}\n        except Exception as e:\n            results[file_name] = {'error': str(e)}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}",
+          "CODE_1B": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        try:\n            # Using RAG search to get relevant chunks and then asking the LLM to summarize.\n            chunks = search_stored_documents_rag(f'Analyze document for main topics, key entities, dates, and numerical data: {file_name}', file_name)\n            if chunks:\n                summary_prompt = f'Provide a concise summary of the main topics, key entities, dates, and numerical data from the provided document chunks: {file_name}'\n                summary = ask_document(summary_prompt, '\\n'.join(chunks), [], file_name)\n                results[file_name] = {'summary': summary}\n            else:\n                results[file_name] = {'message': 'No relevant chunks found via RAG search for analysis.'}\n        except Exception as e:\n            results[file_name] = {'error': str(e)}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}"
+        },
+        "execution_result": {
+          "document_analysis_results_T002": {
+            "Bill _Stay at Hotel Ocean Suites.pdf": {
+              "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+            },
+            "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": {
+              "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+            },
+            "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": {
+              "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+            },
+            "demo1.mp4": {
+              "type": "unsupported",
+              "message": "File type not supported for text extraction"
+            },
+            "IMG_20180421_110010_cropped.JPG": {
+              "type": "unsupported",
+              "message": "File type not supported for text extraction"
+            },
+            "Monisha Resume Revised _ DND(SDG).pdf": {
+              "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+            },
+            "p2.jpg": {
+              "type": "unsupported",
+              "message": "File type not supported for text extraction"
+            },
+            "Receipt 1 _ Uber From Home To IGI T-1D.pdf": {
+              "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+            },
+            "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": {
+              "type": "unsupported",
+              "message": "File type not supported for text extraction"
+            },
+            "Receipt 3. Auto From Hotel to L&T Powai .jpeg": {
+              "type": "unsupported",
+              "message": "File type not supported for text extraction"
+            },
+            "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": {
+              "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+            },
+            "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": {
+              "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+            },
+            "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": {
+              "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+              "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+            }
+          }
+        },
+        "execution_status": "success",
+        "execution_error": null,
+        "execution_time": "2026-02-07 13:27:02",
+        "executed_variant": "CODE_1A",
+        "execution_logs": ""
+      },
+      "error": null,
+      "cost": 0.0023424,
+      "start_time": "2026-02-07T07:56:38.652616",
+      "end_time": "2026-02-07T07:57:07.561055",
+      "execution_time": 28.908439,
+      "iterations": [
+        {
+          "iteration": 1,
+          "output": {
+            "document_analysis_results_T002": [],
+            "call_self": true,
+            "next_instruction": "Process the extracted content for each document to identify main topics, key entities, dates, and numerical data. For documents that are too large, ensure a summary and key takeaways are prioritized.",
+            "iteration_context": {
+              "current_step": "initial_extraction",
+              "next_step": "detailed_analysis",
+              "files_to_process": [
+                "Bill _Stay at Hotel Ocean Suites.pdf",
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx",
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf",
+                "demo1.mp4",
+                "IMG_20180421_110010_cropped.JPG",
+                "Monisha Resume Revised _ DND(SDG).pdf",
+                "p2.jpg",
+                "Receipt 1 _ Uber From Home To IGI T-1D.pdf",
+                "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png",
+                "Receipt 3. Auto From Hotel to L&T Powai .jpeg",
+                "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf",
+                "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf",
+                "Receipt 6 _ Uber From IGI T-1C TO Home.pdf"
+              ]
+            },
+            "code_variants": {
+              "CODE_1A": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith('.pdf'):\n        content = preview_document(file_name)\n        results[file_name] = content\n    elif file_name.lower().endswith('.xlsx'):\n        content = preview_document(file_name)\n        results[file_name] = content\n    elif file_name.lower().endswith('.docx'):\n        content = preview_document(file_name)\n        results[file_name] = content\n    elif file_name.lower().endswith('.txt'):\n        content = preview_document(file_name)\n        results[file_name] = content\n    # Add more file types if needed\n    else:\n        # For non-document types like video or image, use a placeholder or skip\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}",
+              "CODE_1B": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        # Prioritize summary for potentially large files\n        summary = preview_document(f'Summarize: {file_name}')\n        results[file_name] = {'summary': summary}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}"
+            }
+          },
+          "execution_result": {
+            "status": "success",
+            "result": {
+              "document_analysis_results_T002": {
+                "Bill _Stay at Hotel Ocean Suites.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Bill _Stay at Hotel Ocean Suites.pdf`"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": {
+                  "markdown": "### ❌ Error\nFile not found: `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx`"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf`"
+                },
+                "demo1.mp4": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "IMG_20180421_110010_cropped.JPG": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Monisha Resume Revised _ DND(SDG).pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Monisha Resume Revised _ DND(SDG).pdf`"
+                },
+                "p2.jpg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 1 _ Uber From Home To IGI T-1D.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Receipt 1 _ Uber From Home To IGI T-1D.pdf`"
+                },
+                "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 3. Auto From Hotel to L&T Powai .jpeg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf`"
+                },
+                "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf`"
+                },
+                "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Receipt 6 _ Uber From IGI T-1C TO Home.pdf`"
+                }
+              }
+            },
+            "raw": {
+              "document_analysis_results_T002": {
+                "Bill _Stay at Hotel Ocean Suites.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Bill _Stay at Hotel Ocean Suites.pdf`"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": {
+                  "markdown": "### ❌ Error\nFile not found: `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx`"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf`"
+                },
+                "demo1.mp4": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "IMG_20180421_110010_cropped.JPG": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Monisha Resume Revised _ DND(SDG).pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Monisha Resume Revised _ DND(SDG).pdf`"
+                },
+                "p2.jpg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 1 _ Uber From Home To IGI T-1D.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Receipt 1 _ Uber From Home To IGI T-1D.pdf`"
+                },
+                "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 3. Auto From Hotel to L&T Powai .jpeg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf`"
+                },
+                "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf`"
+                },
+                "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": {
+                  "markdown": "### ❌ Error\nFile not found: `Receipt 6 _ Uber From IGI T-1C TO Home.pdf`"
+                }
+              }
+            },
+            "logs": "",
+            "execution_time": "2026-02-07 13:26:45",
+            "total_time": "0.086",
+            "executed_variant": "CODE_1A"
+          }
+        },
+        {
+          "iteration": 2,
+          "output": {
+            "document_analysis_results_T002": [],
+            "call_self": true,
+            "next_instruction": "For each document, extract main topics, key entities, dates, and numerical data. Prioritize summaries for larger documents.",
+            "iteration_context": {
+              "current_step": "detailed_analysis",
+              "next_step": "final_processing",
+              "files_to_analyze": [
+                "Bill _Stay at Hotel Ocean Suites.pdf",
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx",
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf",
+                "demo1.mp4",
+                "IMG_20180421_110010_cropped.JPG",
+                "Monisha Resume Revised _ DND(SDG).pdf",
+                "p2.jpg",
+                "Receipt 1 _ Uber From Home To IGI T-1D.pdf",
+                "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png",
+                "Receipt 3. Auto From Hotel to L&T Powai .jpeg",
+                "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf",
+                "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf",
+                "Receipt 6 _ Uber From IGI T-1C TO Home.pdf"
+              ]
+            },
+            "code_variants": {
+              "CODE_2A": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        try:\n            content = preview_document(file_name)\n            # For large files, try to get a summary, otherwise extract key info\n            if len(content) > 2000: # Heuristic for large files\n                summary_prompt = f'Summarize the key topics, entities, dates, and numerical data from the following document: {file_name}'\n                summary = ask_document(summary_prompt, content, [], file_name)\n                results[file_name] = {'summary': summary}\n            else:\n                topics = ask_document('Extract main topics from this document.', content, [], file_name)\n                entities = ask_document('Extract key entities (people, organizations, locations) from this document.', content, [], file_name)\n                dates = ask_document('Extract all dates mentioned in this document.', content, [], file_name)\n                numerical_data = ask_document('Extract all numerical data from this document.', content, [], file_name)\n                results[file_name] = {'topics': topics, 'entities': entities, 'dates': dates, 'numerical_data': numerical_data}\n        except Exception as e:\n            results[file_name] = {'error': str(e)}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}",
+              "CODE_2B": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        try:\n            # Use RAG search to get relevant chunks, then summarize\n            chunks = search_stored_documents_rag(f'Analyze document: {file_name}', file_name)\n            if chunks:\n                summary_prompt = f'Provide a concise summary highlighting main topics, key entities, dates, and numerical data from the provided document chunks: {file_name}'\n                summary = ask_document(summary_prompt, '\\n'.join(chunks), [], file_name) # Join chunks to simulate full doc context\n                results[file_name] = {'summary': summary}\n            else:\n                 results[file_name] = {'message': 'No relevant chunks found via RAG search for analysis.'}\n        except Exception as e:\n            results[file_name] = {'error': str(e)}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}"
+            }
+          },
+          "execution_result": {
+            "status": "success",
+            "result": {
+              "document_analysis_results_T002": {
+                "Bill _Stay at Hotel Ocean Suites.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "demo1.mp4": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "IMG_20180421_110010_cropped.JPG": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Monisha Resume Revised _ DND(SDG).pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "p2.jpg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 1 _ Uber From Home To IGI T-1D.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 3. Auto From Hotel to L&T Powai .jpeg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                }
+              }
+            },
+            "raw": {
+              "document_analysis_results_T002": {
+                "Bill _Stay at Hotel Ocean Suites.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "demo1.mp4": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "IMG_20180421_110010_cropped.JPG": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Monisha Resume Revised _ DND(SDG).pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "p2.jpg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 1 _ Uber From Home To IGI T-1D.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 3. Auto From Hotel to L&T Powai .jpeg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                }
+              }
+            },
+            "logs": "",
+            "execution_time": "2026-02-07 13:26:49",
+            "total_time": "4.948",
+            "executed_variant": "CODE_2A"
+          }
+        },
+        {
+          "iteration": 3,
+          "output": {
+            "document_analysis_results_T002": [],
+            "call_self": false,
+            "code_variants": {
+              "CODE_1A": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        try:\n            content = preview_document(file_name)\n            topics = ask_document('Extract main topics from this document.', content, [], file_name)\n            entities = ask_document('Extract key entities (people, organizations, locations) from this document.', content, [], file_name)\n            dates = ask_document('Extract all dates mentioned in this document.', content, [], file_name)\n            numerical_data = ask_document('Extract all numerical data from this document.', content, [], file_name)\n            results[file_name] = {'topics': topics, 'entities': entities, 'dates': dates, 'numerical_data': numerical_data}\n        except Exception as e:\n            results[file_name] = {'error': str(e)}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}",
+              "CODE_1B": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        try:\n            # Using RAG search to get relevant chunks and then asking the LLM to summarize.\n            chunks = search_stored_documents_rag(f'Analyze document for main topics, key entities, dates, and numerical data: {file_name}', file_name)\n            if chunks:\n                summary_prompt = f'Provide a concise summary of the main topics, key entities, dates, and numerical data from the provided document chunks: {file_name}'\n                summary = ask_document(summary_prompt, '\\n'.join(chunks), [], file_name)\n                results[file_name] = {'summary': summary}\n            else:\n                results[file_name] = {'message': 'No relevant chunks found via RAG search for analysis.'}\n        except Exception as e:\n            results[file_name] = {'error': str(e)}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}"
+            }
+          },
+          "execution_result": {
+            "status": "success",
+            "result": {
+              "document_analysis_results_T002": {
+                "Bill _Stay at Hotel Ocean Suites.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "demo1.mp4": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "IMG_20180421_110010_cropped.JPG": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Monisha Resume Revised _ DND(SDG).pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "p2.jpg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 1 _ Uber From Home To IGI T-1D.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 3. Auto From Hotel to L&T Powai .jpeg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                }
+              }
+            },
+            "raw": {
+              "document_analysis_results_T002": {
+                "Bill _Stay at Hotel Ocean Suites.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "demo1.mp4": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "IMG_20180421_110010_cropped.JPG": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Monisha Resume Revised _ DND(SDG).pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "p2.jpg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 1 _ Uber From Home To IGI T-1D.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 3. Auto From Hotel to L&T Powai .jpeg": {
+                  "type": "unsupported",
+                  "message": "File type not supported for text extraction"
+                },
+                "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                },
+                "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": {
+                  "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                  "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+                }
+              }
+            },
+            "logs": "",
+            "execution_time": "2026-02-07 13:26:58",
+            "total_time": "4.692",
+            "executed_variant": "CODE_1A"
+          }
+        }
+      ],
+      "input_tokens": 11520,
+      "output_tokens": 1024,
+      "total_tokens": 12544
+    },
+    {
+      "id": "T003",
+      "description": "Synthesize findings from all analyzed documents",
+      "agent": "DistillerAgent",
+      "agent_prompt": "Synthesize the extracted information from `document_analysis_results_T002`. Group similar themes and findings across documents. Identify any overlapping information, discrepancies, or unique insights from each document. Structure the synthesis to highlight the key themes, entities, and numerical data discovered.",
+      "reads": [
+        "document_analysis_results_T002"
+      ],
+      "writes": [
+        "synthesized_findings_T003"
+      ],
+      "status": "completed",
+      "output": {
+        "synthesized_findings_T003": {
+          "summary": "Analysis of the provided documents could not be completed due to errors reaching the AI model for all text-extractable files. Unsupported file types were also encountered.",
+          "documents_processed": {
+            "Bill _Stay at Hotel Ocean Suites.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+            "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+            "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+            "demo1.mp4": "Unsupported file type",
+            "IMG_20180421_110010_cropped.JPG": "Unsupported file type",
+            "Monisha Resume Revised _ DND(SDG).pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+            "p2.jpg": "Unsupported file type",
+            "Receipt 1 _ Uber From Home To IGI T-1D.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+            "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": "Unsupported file type",
+            "Receipt 3. Auto From Hotel to L&T Powai .jpeg": "Unsupported file type",
+            "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+            "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+            "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+          },
+          "key_themes": [],
+          "entities": [],
+          "numerical_data": [],
+          "dates": []
+        }
+      },
+      "error": null,
+      "cost": 0.0008927999999999999,
+      "start_time": "2026-02-07T07:57:07.578771",
+      "end_time": "2026-02-07T07:57:10.316265",
+      "execution_time": 2.737494,
+      "iterations": [
+        {
+          "iteration": 1,
+          "output": {
+            "synthesized_findings_T003": {
+              "summary": "Analysis of the provided documents could not be completed due to errors reaching the AI model for all text-extractable files. Unsupported file types were also encountered.",
+              "documents_processed": {
+                "Bill _Stay at Hotel Ocean Suites.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                "demo1.mp4": "Unsupported file type",
+                "IMG_20180421_110010_cropped.JPG": "Unsupported file type",
+                "Monisha Resume Revised _ DND(SDG).pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                "p2.jpg": "Unsupported file type",
+                "Receipt 1 _ Uber From Home To IGI T-1D.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": "Unsupported file type",
+                "Receipt 3. Auto From Hotel to L&T Powai .jpeg": "Unsupported file type",
+                "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+                "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+              },
+              "key_themes": [],
+              "entities": [],
+              "numerical_data": [],
+              "dates": []
+            }
+          }
+        }
+      ],
+      "input_tokens": 2900,
+      "output_tokens": 763,
+      "total_tokens": 3663
+    },
+    {
+      "id": "T004",
+      "description": "Format the synthesized findings into a comprehensive report",
+      "agent": "FormatterAgent",
+      "agent_prompt": "Create a detailed and comprehensive report based on the `synthesized_findings_T003`. Organize the report logically, using headings, subheadings, and bullet points for clarity. Include a summary of all documents analyzed, key themes, identified entities, important dates, and significant numerical data. The report should be formatted in Markdown, aiming for a detailed output suitable for executive review.",
+      "reads": [
+        "synthesized_findings_T003"
+      ],
+      "writes": [
+        "comprehensive_report_T004"
+      ],
+      "status": "completed",
+      "output": {
+        "final_format": "markdown",
+        "markdown_report": "# Document Analysis Report: L&T POWAI 27-28 NOV 24\n\n## Executive Summary\n\nThis report details the attempted analysis of documents located in the directory `C:\\Users\\Monisha Srivastava\\Desktop\\L&T POWAI 27-28 NOV 24`. Unfortunately, the comprehensive analysis of these files could not be completed due to technical issues. Specifically, errors were encountered when attempting to reach the AI model for text extraction from several PDF and XLSX files. Additionally, certain file types, including MP4, JPG, and PNG, were identified as unsupported for direct text analysis.\n\nConsequently, no key themes, entities, numerical data, or specific dates could be extracted from the majority of the provided documents. The full scope of the original query remains unfulfilled due to these underlying processing failures.\n\n## 1. Overview of Document Processing Attempt\n\nThe system was tasked with analyzing a collection of documents from a specified local directory. The initial step involved identifying and attempting to process each file. A list of the files present in the directory was successfully generated.\n\nHowever, during the subsequent analysis phase, significant issues arose.\n\n### 1.1. Files Identified in Directory\n\nThe following files were detected in the specified directory:\n\n*   `Bill _Stay at Hotel Ocean Suites.pdf`\n*   `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx`\n*   `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf`\n*   `demo1.mp4`\n*   `IMG_20180421_110010_cropped.JPG`\n*   `Monisha Resume Revised _ DND(SDG).pdf`\n*   `p2.jpg`\n*   `Receipt 1 _ Uber From Home To IGI T-1D.pdf`\n*   `Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png`\n*   `Receipt 3. Auto From Hotel to L&T Powai .jpeg`\n*   `Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf`\n*   `Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf`\n*   `Receipt 6 _ Uber From IGI T-1C TO Home.pdf`\n\n## 2. Analysis Failures and Unsupported File Types\n\n### 2.1. AI Model Connection Errors\n\nA substantial number of files, predominantly in PDF and XLSX formats, failed during the analysis due to an inability to connect to the AI model. The recurring error message:\n\n`Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)`\n\nindicates a fundamental issue with the communication channel between the processing agent and the AI service. This prevented the extraction of topics, entities, dates, and numerical data from the following documents:\n\n*   `Bill _Stay at Hotel Ocean Suites.pdf`\n*   `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx`\n*   `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf`\n*   `Monisha Resume Revised _ DND(SDG).pdf`\n*   `Receipt 1 _ Uber From Home To IGI T-1D.pdf`\n*   `Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf`\n*   `Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf`\n*   `Receipt 6 _ Uber From IGI T-1C TO Home.pdf`\n\n### 2.2. Unsupported File Types\n\nSeveral files were identified as unsupported for text extraction and analysis. These include common media and image file formats:\n\n*   `demo1.mp4` (Video file)\n*   `IMG_20180421_110010_cropped.JPG` (Image file)\n*   `p2.jpg` (Image file)\n*   `Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png` (Image file)\n*   `Receipt 3. Auto From Hotel to L&T Powai .jpeg` (Image file)\n\nAnalysis could not proceed for these files as they do not contain directly extractable text in a format compatible with the current processing pipeline.\n\n## 3. Summary of Findings (or Lack Thereof)\n\nDue to the aforementioned technical challenges, the analysis of the documents within the specified directory has been largely unsuccessful. The `synthesized_findings_T003` output accurately reflects this situation:\n\n*   **Summary**: \"Analysis of the provided documents could not be completed due to errors reaching the AI model for all text-extractable files. Unsupported file types were also encountered.\"\n*   **Documents Processed**: All documents listed above are marked as either \"Analysis failed\" or \"Unsupported file type\".\n*   **Key Themes**: None identified.\n*   **Entities**: None identified.\n*   **Numerical Data**: None identified.\n*   **Dates**: None identified.\n\n## 4. Recommendations\n\nTo successfully analyze these documents, the following steps are recommended:\n\n1.  **Investigate AI Model Connectivity**: Address the `400 Client Error: Bad Request` to ensure stable communication with the AI model for text extraction services. This may involve checking network configurations, API endpoints, or the status of the AI service itself.\n2.  **File Format Compatibility**: For unsupported file types (e.g., `.mp4`, `.jpg`, `.png`), consider implementing pre-processing steps such as optical character recognition (OCR) for images or transcribing audio/video content if relevant information is expected.\n3.  **Retry Analysis**: Once connectivity issues are resolved, re-initiate the document analysis process.\n\nThis report represents the outcome of the attempted analysis based on the provided data. Further steps are required to achieve a complete and meaningful analysis of the documents.",
+        "call_self": false
+      },
+      "error": null,
+      "cost": 0.0017648999999999998,
+      "start_time": "2026-02-07T07:57:10.332839",
+      "end_time": "2026-02-07T07:57:17.520574",
+      "execution_time": 7.187735,
+      "iterations": [
+        {
+          "iteration": 1,
+          "output": {
+            "final_format": "markdown",
+            "markdown_report": "# Document Analysis Report: L&T POWAI 27-28 NOV 24\n\n## Executive Summary\n\nThis report details the attempted analysis of documents located in the directory `C:\\Users\\Monisha Srivastava\\Desktop\\L&T POWAI 27-28 NOV 24`. Unfortunately, the comprehensive analysis of these files could not be completed due to technical issues. Specifically, errors were encountered when attempting to reach the AI model for text extraction from several PDF and XLSX files. Additionally, certain file types, including MP4, JPG, and PNG, were identified as unsupported for direct text analysis.\n\nConsequently, no key themes, entities, numerical data, or specific dates could be extracted from the majority of the provided documents. The full scope of the original query remains unfulfilled due to these underlying processing failures.\n\n## 1. Overview of Document Processing Attempt\n\nThe system was tasked with analyzing a collection of documents from a specified local directory. The initial step involved identifying and attempting to process each file. A list of the files present in the directory was successfully generated.\n\nHowever, during the subsequent analysis phase, significant issues arose.\n\n### 1.1. Files Identified in Directory\n\nThe following files were detected in the specified directory:\n\n*   `Bill _Stay at Hotel Ocean Suites.pdf`\n*   `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx`\n*   `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf`\n*   `demo1.mp4`\n*   `IMG_20180421_110010_cropped.JPG`\n*   `Monisha Resume Revised _ DND(SDG).pdf`\n*   `p2.jpg`\n*   `Receipt 1 _ Uber From Home To IGI T-1D.pdf`\n*   `Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png`\n*   `Receipt 3. Auto From Hotel to L&T Powai .jpeg`\n*   `Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf`\n*   `Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf`\n*   `Receipt 6 _ Uber From IGI T-1C TO Home.pdf`\n\n## 2. Analysis Failures and Unsupported File Types\n\n### 2.1. AI Model Connection Errors\n\nA substantial number of files, predominantly in PDF and XLSX formats, failed during the analysis due to an inability to connect to the AI model. The recurring error message:\n\n`Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)`\n\nindicates a fundamental issue with the communication channel between the processing agent and the AI service. This prevented the extraction of topics, entities, dates, and numerical data from the following documents:\n\n*   `Bill _Stay at Hotel Ocean Suites.pdf`\n*   `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx`\n*   `CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf`\n*   `Monisha Resume Revised _ DND(SDG).pdf`\n*   `Receipt 1 _ Uber From Home To IGI T-1D.pdf`\n*   `Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf`\n*   `Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf`\n*   `Receipt 6 _ Uber From IGI T-1C TO Home.pdf`\n\n### 2.2. Unsupported File Types\n\nSeveral files were identified as unsupported for text extraction and analysis. These include common media and image file formats:\n\n*   `demo1.mp4` (Video file)\n*   `IMG_20180421_110010_cropped.JPG` (Image file)\n*   `p2.jpg` (Image file)\n*   `Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png` (Image file)\n*   `Receipt 3. Auto From Hotel to L&T Powai .jpeg` (Image file)\n\nAnalysis could not proceed for these files as they do not contain directly extractable text in a format compatible with the current processing pipeline.\n\n## 3. Summary of Findings (or Lack Thereof)\n\nDue to the aforementioned technical challenges, the analysis of the documents within the specified directory has been largely unsuccessful. The `synthesized_findings_T003` output accurately reflects this situation:\n\n*   **Summary**: \"Analysis of the provided documents could not be completed due to errors reaching the AI model for all text-extractable files. Unsupported file types were also encountered.\"\n*   **Documents Processed**: All documents listed above are marked as either \"Analysis failed\" or \"Unsupported file type\".\n*   **Key Themes**: None identified.\n*   **Entities**: None identified.\n*   **Numerical Data**: None identified.\n*   **Dates**: None identified.\n\n## 4. Recommendations\n\nTo successfully analyze these documents, the following steps are recommended:\n\n1.  **Investigate AI Model Connectivity**: Address the `400 Client Error: Bad Request` to ensure stable communication with the AI model for text extraction services. This may involve checking network configurations, API endpoints, or the status of the AI service itself.\n2.  **File Format Compatibility**: For unsupported file types (e.g., `.mp4`, `.jpg`, `.png`), consider implementing pre-processing steps such as optical character recognition (OCR) for images or transcribing audio/video content if relevant information is expected.\n3.  **Retry Analysis**: Once connectivity issues are resolved, re-initiate the document analysis process.\n\nThis report represents the outcome of the attempted analysis based on the provided data. Further steps are required to achieve a complete and meaningful analysis of the documents.",
+            "call_self": false
+          }
+        }
+      ],
+      "input_tokens": 6090,
+      "output_tokens": 1419,
+      "total_tokens": 7509
+    }
+  ],
+  "edges": [
+    {
+      "source": "ROOT",
+      "target": "Query"
+    },
+    {
+      "source": "Query",
+      "target": "T001"
+    },
+    {
+      "source": "T001",
+      "target": "T002"
+    },
+    {
+      "source": "T002",
+      "target": "T003"
+    },
+    {
+      "source": "T003",
+      "target": "T004"
+    }
+  ]
+}

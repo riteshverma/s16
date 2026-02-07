@@ -1,0 +1,10 @@
+```json
+{
+  "transportation_cost_T006": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "results = json.loads(search_web_with_text_content('Kyoto public transport costs couple daily', 8))\nreturn {'transportation_cost_T006': results}",
+    "CODE_1B": "urls = json.loads(fetch_search_urls('Kyoto bus train taxi fares for tourists', 10))\nreturn {'transportation_cost_T006': urls}"
+  }
+}
+```

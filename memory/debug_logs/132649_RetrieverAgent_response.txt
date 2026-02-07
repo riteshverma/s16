@@ -1,0 +1,30 @@
+```json
+{
+  "document_analysis_results_T002": [],
+  "call_self": true,
+  "next_instruction": "For each document, extract main topics, key entities, dates, and numerical data. Prioritize summaries for larger documents.",
+  "iteration_context": {
+    "current_step": "detailed_analysis",
+    "next_step": "final_processing",
+    "files_to_analyze": [
+      "Bill _Stay at Hotel Ocean Suites.pdf",
+      "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx",
+      "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf",
+      "demo1.mp4",
+      "IMG_20180421_110010_cropped.JPG",
+      "Monisha Resume Revised _ DND(SDG).pdf",
+      "p2.jpg",
+      "Receipt 1 _ Uber From Home To IGI T-1D.pdf",
+      "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png",
+      "Receipt 3. Auto From Hotel to L&T Powai .jpeg",
+      "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf",
+      "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf",
+      "Receipt 6 _ Uber From IGI T-1C TO Home.pdf"
+    ]
+  },
+  "code_variants": {
+    "CODE_2A": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        try:\n            content = preview_document(file_name)\n            # For large files, try to get a summary, otherwise extract key info\n            if len(content) > 2000: # Heuristic for large files\n                summary_prompt = f'Summarize the key topics, entities, dates, and numerical data from the following document: {file_name}'\n                summary = ask_document(summary_prompt, content, [], file_name)\n                results[file_name] = {'summary': summary}\n            else:\n                topics = ask_document('Extract main topics from this document.', content, [], file_name)\n                entities = ask_document('Extract key entities (people, organizations, locations) from this document.', content, [], file_name)\n                dates = ask_document('Extract all dates mentioned in this document.', content, [], file_name)\n                numerical_data = ask_document('Extract all numerical data from this document.', content, [], file_name)\n                results[file_name] = {'topics': topics, 'entities': entities, 'dates': dates, 'numerical_data': numerical_data}\n        except Exception as e:\n            results[file_name] = {'error': str(e)}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}",
+    "CODE_2B": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        try:\n            # Use RAG search to get relevant chunks, then summarize\n            chunks = search_stored_documents_rag(f'Analyze document: {file_name}', file_name)\n            if chunks:\n                summary_prompt = f'Provide a concise summary highlighting main topics, key entities, dates, and numerical data from the provided document chunks: {file_name}'\n                summary = ask_document(summary_prompt, '\\n'.join(chunks), [], file_name) # Join chunks to simulate full doc context\n                results[file_name] = {'summary': summary}\n            else:\n                 results[file_name] = {'message': 'No relevant chunks found via RAG search for analysis.'}\n        except Exception as e:\n            results[file_name] = {'error': str(e)}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}"
+  }
+}
+```

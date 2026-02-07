@@ -1,0 +1,26 @@
+```json
+{
+  "synthesized_findings_T003": {
+    "summary": "Analysis of the provided documents could not be completed due to errors reaching the AI model for all text-extractable files. Unsupported file types were also encountered.",
+    "documents_processed": {
+      "Bill _Stay at Hotel Ocean Suites.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+      "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+      "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+      "demo1.mp4": "Unsupported file type",
+      "IMG_20180421_110010_cropped.JPG": "Unsupported file type",
+      "Monisha Resume Revised _ DND(SDG).pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+      "p2.jpg": "Unsupported file type",
+      "Receipt 1 _ Uber From Home To IGI T-1D.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+      "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": "Unsupported file type",
+      "Receipt 3. Auto From Hotel to L&T Powai .jpeg": "Unsupported file type",
+      "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+      "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+      "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": "Analysis failed: Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+    },
+    "key_themes": [],
+    "entities": [],
+    "numerical_data": [],
+    "dates": []
+  }
+}
+```

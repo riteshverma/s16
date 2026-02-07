@@ -1,0 +1,10 @@
+```json
+{
+  "cultural_experiences_T004": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "results = json.loads(search_web_with_text_content('unique cultural experiences Kyoto couple tea ceremony calligraphy geisha district', 10))\nreturn {'cultural_experiences_T004': results}",
+    "CODE_1B": "urls = json.loads(fetch_search_urls('Kyoto cultural activities for couples traditional crafts', 8))\nreturn {'cultural_experiences_T004': urls}"
+  }
+}
+```

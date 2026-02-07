@@ -1,0 +1,10 @@
+```json
+{
+  "top_attractions_T002": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "results = json.loads(search_web_with_text_content('scenic romantic Kyoto attractions cherry blossom season couples', 5))\nreturn {'top_attractions_T002': results}",
+    "CODE_1B": "urls = json.loads(fetch_search_urls('Kyoto romantic spots cherry blossom', 7))\nreturn {'top_attractions_T002': urls}"
+  }
+}
+```

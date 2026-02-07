@@ -1,0 +1,43 @@
+```json
+{
+  "plan_graph": {
+    "nodes": [
+      {
+        "id": "T001",
+        "description": "Retrieve information about the T20 Under-19 World Cup winner.",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Search for the winner of the T20 Under-19 World Cup. Provide the name of the winning team and the year of the tournament.",
+        "reads": [],
+        "writes": [
+          "world_cup_winner_info_T001"
+        ]
+      },
+      {
+        "id": "T002",
+        "description": "Format the T20 Under-19 World Cup winner information.",
+        "agent": "FormatterAgent",
+        "agent_prompt": "Format the provided information about the T20 Under-19 World Cup winner into a clear and concise statement. Include the winning team and the year. The output should be direct and without motivational language.",
+        "reads": [
+          "world_cup_winner_info_T001"
+        ],
+        "writes": [
+          "formatted_winner_info_T002"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": "ROOT",
+        "target": "T001"
+      },
+      {
+        "source": "T001",
+        "target": "T002"
+      }
+    ]
+  },
+  "next_step_id": "T001",
+  "interpretation_confidence": 0.95,
+  "ambiguity_notes": []
+}
+```

@@ -1,0 +1,30 @@
+```json
+{
+  "document_analysis_results_T002": [],
+  "call_self": true,
+  "next_instruction": "Process the extracted content for each document to identify main topics, key entities, dates, and numerical data. For documents that are too large, ensure a summary and key takeaways are prioritized.",
+  "iteration_context": {
+    "current_step": "initial_extraction",
+    "next_step": "detailed_analysis",
+    "files_to_process": [
+      "Bill _Stay at Hotel Ocean Suites.pdf",
+      "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx",
+      "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf",
+      "demo1.mp4",
+      "IMG_20180421_110010_cropped.JPG",
+      "Monisha Resume Revised _ DND(SDG).pdf",
+      "p2.jpg",
+      "Receipt 1 _ Uber From Home To IGI T-1D.pdf",
+      "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png",
+      "Receipt 3. Auto From Hotel to L&T Powai .jpeg",
+      "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf",
+      "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf",
+      "Receipt 6 _ Uber From IGI T-1C TO Home.pdf"
+    ]
+  },
+  "code_variants": {
+    "CODE_1A": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith('.pdf'):\n        content = preview_document(file_name)\n        results[file_name] = content\n    elif file_name.lower().endswith('.xlsx'):\n        content = preview_document(file_name)\n        results[file_name] = content\n    elif file_name.lower().endswith('.docx'):\n        content = preview_document(file_name)\n        results[file_name] = content\n    elif file_name.lower().endswith('.txt'):\n        content = preview_document(file_name)\n        results[file_name] = content\n    # Add more file types if needed\n    else:\n        # For non-document types like video or image, use a placeholder or skip\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}",
+    "CODE_1B": "results = {}\nfile_list = ['Bill _Stay at Hotel Ocean Suites.pdf', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx', 'CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf', 'demo1.mp4', 'IMG_20180421_110010_cropped.JPG', 'Monisha Resume Revised _ DND(SDG).pdf', 'p2.jpg', 'Receipt 1 _ Uber From Home To IGI T-1D.pdf', 'Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png', 'Receipt 3. Auto From Hotel to L&T Powai .jpeg', 'Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf', 'Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf', 'Receipt 6 _ Uber From IGI T-1C TO Home.pdf']\n\nfor file_name in file_list:\n    if file_name.lower().endswith(('.pdf', '.xlsx', '.docx', '.txt')):\n        # Prioritize summary for potentially large files\n        summary = preview_document(f'Summarize: {file_name}')\n        results[file_name] = {'summary': summary}\n    else:\n        results[file_name] = {'type': 'unsupported', 'message': 'File type not supported for text extraction'}\n\nreturn {'document_analysis_results_T002': results}"
+  }
+}
+```

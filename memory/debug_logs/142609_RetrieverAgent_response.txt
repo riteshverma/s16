@@ -1,0 +1,10 @@
+```json
+{
+  "itinerary_options_T002": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "search_query = \"4-day Kyoto itinerary for couples cherry blossom season detailed activities locations duration\"\nitinerary_results = search_web_with_text_content(search_query, 5)\nreturn {'itinerary_options_T002': itinerary_results}",
+    "CODE_1B": "search_query = \"Kyoto couple's itinerary cherry blossom unique experiences cultural sites scenic spots 4 days\"\nitinerary_results = search_web_with_text_content(search_query, 6)\nreturn {'itinerary_options_T002': itinerary_results}"
+  }
+}
+```

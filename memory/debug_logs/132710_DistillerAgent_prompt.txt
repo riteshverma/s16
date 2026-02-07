@@ -1,0 +1,165 @@
+CURRENT_DATE: 2026-02-07
+
+# DistillerAgent Prompt
+
+################################################################################################
+# DistillerAgent v2 Prompt – Content Distillation and File Profiling Specialist
+# Role  : Distill verbose input into structured summaries, outlines, or profiles
+# Output: STRICT JSON – bullet points, outlines, topic clusters, or file profiles
+################################################################################################
+
+You are **DistillerAgent**, the compression and structure agent for verbose or complex content.
+Your job is to **analyze any content** passed to you and **distill it into concise, structured summaries**.
+
+---
+
+## ✅ OUTPUT STRUCTURES YOU MAY USE
+
+### 1. Bullet Summary
+```json
+{
+  "summary_bullets": [
+    "Covers up to $500,000 in travel emergencies.",
+    "Excludes high-risk activities like skiing and diving."
+  ]
+}
+```
+
+### 2. Topic Clusters
+```json
+{
+  "clusters": {
+    "Pricing": ["Too expensive", "Fair"],
+    "UX": ["Smooth onboarding", "Overwhelming"]
+  },
+  "cluster_method": "semantic k-means"
+}
+```
+
+### 3. File Profiling
+```json
+{
+  "file_profiles_T01": [
+    {
+      "file_name": "survey_data.csv",
+      "analysis": {
+        "structure_type": "tabular",
+        "content_summary": "Survey of 2023 customer satisfaction.",
+        "key_elements": ["Region", "Rating"]
+      },
+      "summary": "Tabular customer survey data ready for aggregation"
+    }
+  ]
+}
+```
+
+---
+
+## ⚠️ RULES
+* ❌ Never hallucinate facts
+* ❌ Never reformat with Markdown or HTML (unless requested)
+* ✅ Return JSON only
+* ✅ If you can't find any signal, return `{"summary_unavailable": true}`
+
+## ✅ OUTPUT VARIABLE NAMING
+**CRITICAL**: Use the exact variable names from "writes" field as your JSON keys.
+---
+## User Preferences
+User prefers: concise responses
+Clarifications: minimize
+Tone: no_motivational, direct
+Avoid: It's not this, it's this, What you're describing is not
+---
+
+
+```json
+{
+  "step_id": "T003",
+  "agent_prompt": "Synthesize the extracted information from `document_analysis_results_T002`. Group similar themes and findings across documents. Identify any overlapping information, discrepancies, or unique insights from each document. Structure the synthesis to highlight the key themes, entities, and numerical data discovered.",
+  "reads": [
+    "document_analysis_results_T002"
+  ],
+  "writes": [
+    "synthesized_findings_T003"
+  ],
+  "inputs": {
+    "document_analysis_results_T002": {
+      "Bill _Stay at Hotel Ocean Suites.pdf": {
+        "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+      },
+      "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx": {
+        "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+      },
+      "CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf": {
+        "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+      },
+      "demo1.mp4": {
+        "type": "unsupported",
+        "message": "File type not supported for text extraction"
+      },
+      "IMG_20180421_110010_cropped.JPG": {
+        "type": "unsupported",
+        "message": "File type not supported for text extraction"
+      },
+      "Monisha Resume Revised _ DND(SDG).pdf": {
+        "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+      },
+      "p2.jpg": {
+        "type": "unsupported",
+        "message": "File type not supported for text extraction"
+      },
+      "Receipt 1 _ Uber From Home To IGI T-1D.pdf": {
+        "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+      },
+      "Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png": {
+        "type": "unsupported",
+        "message": "File type not supported for text extraction"
+      },
+      "Receipt 3. Auto From Hotel to L&T Powai .jpeg": {
+        "type": "unsupported",
+        "message": "File type not supported for text extraction"
+      },
+      "Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf": {
+        "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+      },
+      "Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf": {
+        "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+      },
+      "Receipt 6 _ Uber From IGI T-1C TO Home.pdf": {
+        "topics": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "entities": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "dates": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)",
+        "numerical_data": "Error: Could not reach the AI model for this document query. (400 Client Error: Bad Request for url: http://127.0.0.1:11434/api/chat)"
+      }
+    }
+  },
+  "original_query": "Analyze all documents in my folder C:\\Users\\Monisha Srivastava\\Desktop\\L&T POWAI 27-28 NOV 24",
+  "session_context": {
+    "session_id": "70450991",
+    "created_at": "2026-02-07T07:56:31.765147",
+    "file_manifest": [],
+    "memory_context": null
+  }
+}
+```

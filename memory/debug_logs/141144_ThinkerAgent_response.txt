@@ -1,0 +1,21 @@
+```json
+{
+  "total_estimated_cost_T010": {
+    "calculation_steps": [
+      {
+        "step": "Calculate daily total cost (accommodation + transportation + activities + food)",
+        "calculation": "($[accommodation_cost_T005] + $[transportation_cost_T006] + $[activity_cost_T007] + $[food_cost_T008]) * 4",
+        "result": "($[accommodation_cost_T005] + $[transportation_cost_T006] + $[activity_cost_T007] + $[food_cost_T008]) * 4"
+      },
+      {
+        "step": "Add 10% buffer for miscellaneous expenses",
+        "calculation": "(daily_total_cost) * 1.10",
+        "result": "((($[accommodation_cost_T005] + $[transportation_cost_T006] + $[activity_cost_T007] + $[food_cost_T008]) * 4) * 1.10)"
+      }
+    ],
+    "estimated_trip_cost": "((($[accommodation_cost_T005] + $[transportation_cost_T006] + $[activity_cost_T007] + $[food_cost_T008]) * 4) * 1.10)",
+    "user_budget": 3000,
+    "comparison_to_budget": "The estimated trip cost is $((($[accommodation_cost_T005] + $[transportation_cost_T006] + $[activity_cost_T007] + $[food_cost_T008]) * 4) * 1.10)$, which is $[higher/lower] than your budget of $3000. This means the trip is estimated to be $[over/under] budget by $[abs(estimated_trip_cost - user_budget)]"
+  }
+}
+```

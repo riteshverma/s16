@@ -1,0 +1,215 @@
+```json
+{
+  "plan_graph": {
+    "nodes": [
+      {
+        "id": "T001",
+        "description": "Determine optimal cherry blossom viewing dates for Kyoto in 2027.",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Research historical cherry blossom bloom data and forecasts for Kyoto, Japan, for the 2027 season to identify the most probable peak bloom period. Focus on providing a 5-day window.",
+        "reads": [],
+        "writes": [
+          "peak_bloom_window_T001"
+        ]
+      },
+      {
+        "id": "T002",
+        "description": "Identify top 5 Kyoto attractions suitable for couples during cherry blossom season.",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Research popular and romantic tourist attractions in Kyoto, Japan, that are particularly scenic and enjoyable during cherry blossom season. Prioritize attractions that are well-suited for couples. Select the top 5.",
+        "reads": [],
+        "writes": [
+          "top_attractions_T002"
+        ]
+      },
+      {
+        "id": "T003",
+        "description": "Research family-friendly dining options in Kyoto for a couple.",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Research a variety of dining options in Kyoto, Japan, suitable for a couple. Include a mix of traditional and modern cuisine, with an emphasis on ambiance and quality, keeping in mind a $3000 budget for 4 days (excluding flights). Aim for diverse price points to allow for flexibility.",
+        "reads": [],
+        "writes": [
+          "dining_options_T003"
+        ]
+      },
+      {
+        "id": "T004",
+        "description": "Investigate unique cultural experiences for couples in Kyoto.",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Research unique and memorable cultural experiences in Kyoto, Japan, that would be suitable for a couple. Consider activities such as tea ceremonies, calligraphy workshops, traditional crafts, or geisha district tours. Prioritize experiences that offer a deep dive into Japanese culture.",
+        "reads": [],
+        "writes": [
+          "cultural_experiences_T004"
+        ]
+      },
+      {
+        "id": "T005",
+        "description": "Estimate daily accommodation costs in Kyoto for a couple.",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Research average accommodation costs for a couple in Kyoto, Japan, for mid-range hotels or ryokans during cherry blossom season (2027). Provide a daily estimated cost range.",
+        "reads": [],
+        "writes": [
+          "accommodation_cost_T005"
+        ]
+      },
+      {
+        "id": "T006",
+        "description": "Estimate daily transportation costs within Kyoto for a couple.",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Research typical daily transportation costs for a couple using public transport (buses, trains) and occasional taxis within Kyoto, Japan. Assume moderate use of transport to visit attractions.",
+        "reads": [],
+        "writes": [
+          "transportation_cost_T006"
+        ]
+      },
+      {
+        "id": "T007",
+        "description": "Estimate daily activity and entrance fee costs for attractions.",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Research average entrance fees and activity costs for popular tourist attractions in Kyoto, Japan, that are suitable for a couple. Provide an estimated daily cost range.",
+        "reads": [],
+        "writes": [
+          "activity_cost_T007"
+        ]
+      },
+      {
+        "id": "T008",
+        "description": "Estimate daily food and beverage costs for a couple in Kyoto.",
+        "agent": "RetrieverAgent",
+        "agent_prompt": "Research average daily food and beverage costs for a couple dining out in Kyoto, Japan, for 4 days. Include a mix of casual and slightly more upscale dining options.",
+        "reads": [],
+        "writes": [
+          "food_cost_T008"
+        ]
+      },
+      {
+        "id": "T009",
+        "description": "Synthesize itinerary based on optimal bloom dates and identified attractions.",
+        "agent": "ThinkerAgent",
+        "agent_prompt": "Using the identified peak cherry blossom window (`peak_bloom_window_T001`), top attractions (`top_attractions_T002`), and cultural experiences (`cultural_experiences_T004`), create a balanced 4-day itinerary for a couple visiting Kyoto. Ensure attractions are logically grouped by location and time to minimize travel. Allocate time for meals and relaxation.",
+        "reads": [
+          "peak_bloom_window_T001",
+          "top_attractions_T002",
+          "cultural_experiences_T004"
+        ],
+        "writes": [
+          "proposed_itinerary_T009"
+        ]
+      },
+      {
+        "id": "T010",
+        "description": "Calculate total estimated trip cost based on daily expenses and itinerary.",
+        "agent": "ThinkerAgent",
+        "agent_prompt": "Calculate the total estimated cost for a 4-day trip to Kyoto for a couple, excluding flights, based on the following inputs: accommodation cost per day (`accommodation_cost_T005`), transportation cost per day (`transportation_cost_T006`), activity cost per day (`activity_cost_T007`), and food cost per day (`food_cost_T008`). Add a buffer of 10% for miscellaneous expenses. Compare this total to the user's budget of $3000.",
+        "reads": [
+          "accommodation_cost_T005",
+          "transportation_cost_T006",
+          "activity_cost_T007",
+          "food_cost_T008"
+        ],
+        "writes": [
+          "total_estimated_cost_T010"
+        ]
+      },
+      {
+        "id": "T011",
+        "description": "Format the 4-day Kyoto trip plan for a couple.",
+        "agent": "FormatterAgent",
+        "agent_prompt": "Create a comprehensive and beautifully formatted 4-day trip plan for a couple visiting Kyoto during cherry blossom season. The plan should include: \n1. Optimal travel dates based on cherry blossom forecasts (`peak_bloom_window_T001`).\n2. A detailed day-by-day itinerary, incorporating top attractions (`top_attractions_T002`) and unique cultural experiences (`cultural_experiences_T004`), logically sequenced for efficient travel.\n3. Recommended dining options (`dining_options_T003`) for each day, categorized by meal and type of cuisine.\n4. An estimated budget breakdown, detailing accommodation, transportation, activities, and food costs, along with the total estimated cost and a comparison to the $3000 budget (`total_estimated_cost_T010`).\n5. Include practical tips for a couple traveling to Kyoto during this season.\n\nEnsure the output is structured, easy to read, and visually appealing, suitable for a C-suite executive. Aim for a detailed report of at least 5000 words.",
+        "reads": [
+          "peak_bloom_window_T001",
+          "top_attractions_T002",
+          "cultural_experiences_T004",
+          "dining_options_T003",
+          "accommodation_cost_T005",
+          "transportation_cost_T006",
+          "activity_cost_T007",
+          "food_cost_T008",
+          "total_estimated_cost_T010",
+          "proposed_itinerary_T009"
+        ],
+        "writes": [
+          "formatted_trip_plan_T011"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": "ROOT",
+        "target": "T001"
+      },
+      {
+        "source": "ROOT",
+        "target": "T002"
+      },
+      {
+        "source": "ROOT",
+        "target": "T003"
+      },
+      {
+        "source": "ROOT",
+        "target": "T004"
+      },
+      {
+        "source": "ROOT",
+        "target": "T005"
+      },
+      {
+        "source": "ROOT",
+        "target": "T006"
+      },
+      {
+        "source": "ROOT",
+        "target": "T007"
+      },
+      {
+        "source": "ROOT",
+        "target": "T008"
+      },
+      {
+        "source": "T001",
+        "target": "T009"
+      },
+      {
+        "source": "T002",
+        "target": "T009"
+      },
+      {
+        "source": "T004",
+        "target": "T009"
+      },
+      {
+        "source": "T005",
+        "target": "T010"
+      },
+      {
+        "source": "T006",
+        "target": "T010"
+      },
+      {
+        "source": "T007",
+        "target": "T010"
+      },
+      {
+        "source": "T008",
+        "target": "T010"
+      },
+      {
+        "source": "T009",
+        "target": "T011"
+      },
+      {
+        "source": "T010",
+        "target": "T011"
+      },
+      {
+        "source": "T003",
+        "target": "T011"
+      }
+    ]
+  },
+  "next_step_id": "T001",
+  "interpretation_confidence": 0.95,
+  "ambiguity_notes": []
+}
+```

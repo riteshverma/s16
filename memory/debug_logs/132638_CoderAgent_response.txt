@@ -1,0 +1,7 @@
+```json
+{
+  "code_variants": {
+    "CODE_1A": "import os\n\ntarget_directory = 'C:\\\\Users\\\\Monisha Srivastava\\\\Desktop\\\\L&T POWAI 27-28 NOV 24'\nfile_details = []\n\ntry:\n    if not os.path.exists(target_directory):\n        raise FileNotFoundError(f\"Directory not found: {target_directory}\")\n    \n    for item_name in os.listdir(target_directory):\n        item_path = os.path.join(target_directory, item_name)\n        item_size = os.path.getsize(item_path)\n        item_type = \"Directory\" if os.path.isdir(item_path) else \"File\"\n        \n        file_details.append({\n            'name': item_name,\n            'size': item_size,\n            'type': item_type\n        })\n        \n    return { \"file_list_T001\": file_details }\n\nexcept FileNotFoundError as e:\n    return { \"error\": str(e) }\nexcept Exception as e:\n    return { \"error\": f\"An unexpected error occurred: {str(e)}\" }\n"
+  }
+}
+```

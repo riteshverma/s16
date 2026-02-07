@@ -1,0 +1,38 @@
+# requirements.txt
+
+# Core dependencies
+mcp>=0.2.0
+yfinance>=0.2.28
+pydantic>=2.0.0
+anyio>=3.6.2
+
+# Optional development tools
+mcp[cli]>=0.2.0
+
+# Data handling
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Typing support
+typing-extensions>=4.7.0
+
+# Networking
+httpx>=0.24.0
+
+# Logging
+rich>=13.0.0
+
+# Date parsing
+python-dateutil>=2.8.2
+
+# For handling JSON data
+ujson>=5.7.0
+
+# Timezone handling
+pytz>=2023.3
+
+# Progress bars for long operations (optional)
+tqdm>=4.65.0
+
+# For async operations
+asyncio>=3.4.3

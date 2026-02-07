@@ -1,0 +1,10 @@
+```json
+{
+  "world_cup_winner_info_T001": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "results = json.loads(search_web_with_text_content('T20 Under-19 World Cup winner', 5))\nreturn {'world_cup_winner_info_T001': results}",
+    "CODE_1B": "urls = json.loads(web_search('T20 Under-19 Cricket World Cup winner year', 5))\nreturn {'world_cup_winner_info_T001': urls}"
+  }
+}
+```

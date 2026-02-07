@@ -1,0 +1,10 @@
+```json
+{
+  "cherry_blossom_dates_T001": [],
+  "call_self": false,
+  "code_variants": {
+    "CODE_1A": "# SAFE: Robust handling of input list\nimport json, ast\nitems = cherry_blossom_urls_1A\nif isinstance(items, str):\n    try: items = json.loads(items)\n    except: items = ast.literal_eval(items) if items.strip().startswith('[') else []\n\nresults = []\nfor url in items[:5]:\n    if url.startswith('http'):\n        content = webpage_url_to_raw_text(url)\n        results.append({'url': url, 'content': content})\nreturn {'cherry_blossom_dates_T001': results}",
+    "CODE_1B": "# SAFE: Robust handling of input list for alternative tool\nimport json, ast\nitems = cherry_blossom_urls_1A\nif isinstance(items, str):\n    try: items = json.loads(items)\n    except: items = ast.literal_eval(items) if items.strip().startswith('[') else []\n\nall_content = []\nfor url in items[:3]:\n    if url.startswith('http'):\n        content = webpage_url_to_raw_text(url)\n        all_content.append(content)\nreturn {'cherry_blossom_dates_T001': all_content}"
+  }
+}
+```
