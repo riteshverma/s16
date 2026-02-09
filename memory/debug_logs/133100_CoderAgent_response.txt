@@ -1,7 +1,0 @@
-```json
-{
-  "code_variants": {
-    "CODE_1A": "import os\nfolder_path = 'C:\\\\Users\\\\Monisha Srivastava\\\\Desktop\\\\L&T POWAI 27-28 NOV 24'\n\nif os.path.exists(folder_path) and os.path.isdir(folder_path):\n    files = os.listdir(folder_path)\n    return { \"file_list_T001\": files }\nelse:\n    return { \"file_list_T001\": [], \"error\": \"Directory not found or is not a directory.\" }"
-  }
-}
-```

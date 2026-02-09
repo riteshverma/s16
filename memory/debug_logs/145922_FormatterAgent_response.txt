@@ -1,7 +1,0 @@
-```json
-{
-  "final_format": "markdown",
-  "markdown_report": "# TCS Share Price Information\n\n**Company Name:** Tata Consultancy Services\n\n**Ticker Symbol:** TCS.NS\n\n**Current Price:** $2941.60\n\n**Last Trade Time:** Data not available in the provided input.",
-  "call_self": false
-}
-```

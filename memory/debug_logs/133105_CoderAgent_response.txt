@@ -1,7 +1,0 @@
-```json
-{
-  "code_variants": {
-    "CODE_1A": "import os\n\nfile_list = [\n    \"Bill _Stay at Hotel Ocean Suites.pdf\",\n    \"CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx\",\n    \"CLAIM DETAILS OF MONISHA SRIVASTAVA .xlsx - Google Sheets.pdf\",\n    \"demo1.mp4\",\n    \"IMG_20180421_110010_cropped.JPG\",\n    \"Monisha Resume Revised _ DND(SDG).pdf\",\n    \"p2.jpg\",\n    \"Receipt 1 _ Uber From Home To IGI T-1D.pdf\",\n    \"Receipt 2 _ Payment Against  Stay  At  Hotel Ocean  Suites.png\",\n    \"Receipt 3. Auto From Hotel to L&T Powai .jpeg\",\n    \"Receipt 4 _ Uber From L&T Powai To BOM AIRPORT.pdf\",\n    \"Receipt 5 _ Air Tickets From DEL To BOM and Vice versa.pdf\",\n    \"Receipt 6 _ Uber From IGI T-1C TO Home.pdf\"\n]\n\nfile_types = {}\nfor filename in file_list:\n    # Extract extension, handling cases with multiple dots\n    parts = filename.split('.')\n    if len(parts) > 1:\n        extension = parts[-1].lower()\n        # Common image extensions\n        if extension in ['jpg', 'jpeg', 'png', 'gif', 'bmp']:\n            file_types[filename] = 'image'\n        # Specific known types\n        elif extension == 'pdf':\n            file_types[filename] = 'pdf'\n        elif extension == 'xlsx':\n            file_types[filename] = 'xlsx'\n        elif extension == 'mp4':\n            file_types[filename] = 'video'\n        else:\n            file_types[filename] = 'unknown'\n    else:\n        file_types[filename] = 'unknown' # No extension found\n\nreturn {'file_types_T002': file_types}"
-  }
-}
-```
